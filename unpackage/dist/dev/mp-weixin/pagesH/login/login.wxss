@@ -1,0 +1,82 @@
+
+.login_img {
+	width: 120rpx;
+	height: 120rpx;
+	border-radius: 10rpx;
+	display: block;
+	margin: 0 auto;
+	margin-top: 120rpx;
+	margin-bottom: 40rpx;
+}
+.login_line {
+	width: 94%;
+	margin: 60rpx auto;
+	border-bottom: 1px solid #eeeeee;
+	display: flex;
+	align-items: center;
+	height: 60rpx;
+}
+.login_line_title {
+	font-size: 28rpx;
+	color: #333;
+	width: 130rpx;
+}
+.login_line_input {
+	width: 50%;
+	font-size: 26rpx;
+}
+.login_line_ver {
+	font-size: 26rpx;
+	color: #333;
+	border: 1px solid #333;
+	padding: 2rpx 5rpx;
+	border-radius: 6rpx;
+}
+.login_btn {
+	width: 94%;
+	height: 80rpx;
+	text-align: center;
+	background: #fe7e97;
+	color: #ffffff;
+	margin: 100rpx auto;
+	border-radius: 10rpx;
+	line-height: 80rpx;
+}
+.useragement {
+	padding: 50rpx;
+	border-radius: 10rpx;
+}
+.title {
+	text-align: center;
+	font-size: 35rpx;
+}
+.content {
+	margin-top: 20rpx;
+}
+.agebtn {
+	padding-bottom: 50rpx;
+	padding-top: 50rpx;
+	width: 70%;
+	margin: 0 auto;
+}
+.agement_btn {
+	width: 30%;
+	height: 80rpx;
+	text-align: center;
+	background: #fe7e97;
+	color: #ffffff;
+	float: right;
+	border-radius: 10rpx;
+	line-height: 80rpx;
+}
+.disagement_btn {
+	width: 30%;
+	height: 80rpx;
+	text-align: center;
+	background: #b9b9b9;
+	color: #ffffff;
+	float: left;
+	border-radius: 10rpx;
+	line-height: 80rpx;
+}
+

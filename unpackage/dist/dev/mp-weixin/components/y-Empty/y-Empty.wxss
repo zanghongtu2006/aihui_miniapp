@@ -1,0 +1,25 @@
+.empty-wrap.data-v-743c03b8 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+}
+.empty-wrap .img-box.data-v-743c03b8 {
+  width: 200rpx;
+  height: 192rpx;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+}
+.empty-wrap .img-box .img.data-v-743c03b8 {
+  width: 200rpx;
+  height: 164rpx;
+}
+.empty-wrap .empty-text.data-v-743c03b8 {
+  text-align: center;
+  font-size: 24rpx;
+  color: #999999;
+  padding: 30rpx;
+}
+

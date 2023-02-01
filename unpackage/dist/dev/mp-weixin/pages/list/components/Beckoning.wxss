@@ -1,0 +1,85 @@
+.tab.data-v-22bbb367 {
+  font-size: 30rpx;
+  display: flex;
+  justify-content: space-between;
+}
+.tab > .tab-item.data-v-22bbb367 {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20rpx;
+  color: #b2bec3;
+  position: relative;
+}
+.tab > .tab-item.active.data-v-22bbb367 {
+  color: #fe7e97;
+}
+.tab > .tab-item.active.data-v-22bbb367::after {
+  content: "";
+  width: 100rpx;
+  height: 2px;
+  background-color: #fe7e97;
+  position: absolute;
+  bottom: 0;
+}
+.list.data-v-22bbb367 {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0 10rpx;
+  padding-top: 20rpx;
+}
+.list .list-item.data-v-22bbb367 {
+  position: relative;
+  width: 32.5%;
+  height: 400rpx;
+  border-radius: 10rpx;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+  margin-right: 7rpx;
+}
+.list .list-item .sex-group.data-v-22bbb367 {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  bottom: 50rpx;
+  left: 10rpx;
+  height: 35rpx;
+  width: 35rpx;
+  padding: 5rpx;
+}
+.list .list-item .sex-group .sex.data-v-22bbb367 {
+  width: 20rpx;
+  height: 20rpx;
+}
+.list .list-item .text.data-v-22bbb367 {
+  font-size: 20rpx;
+  color: #ffffff;
+  position: absolute;
+  bottom: 15rpx;
+  left: 10rpx;
+}
+.list .list-item .star-count.data-v-22bbb367 {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  top: 10rpx;
+  left: 10rpx;
+  font-size: 20rpx;
+  padding: 2rpx 10rpx;
+  border-radius: 20rpx;
+  color: #fe7e97;
+  border: 1px solid currentColor;
+}
+.list .list-item .star-count .heart-icon.data-v-22bbb367 {
+  width: 25rpx;
+  height: 25rpx;
+  margin-right: 5rpx;
+}
+.list .list-item .img.data-v-22bbb367 {
+  width: 100%;
+  height: 100%;
+}
+

@@ -1,0 +1,12 @@
+{
+  "onReachBottomDistance": 500,
+  "usingComponents": {
+    "u-navbar": "/uview-ui/components/u-navbar/u-navbar",
+    "y-refresh": "/components/y-Refresh/y-Refresh",
+    "y-diary-item": "/components/y-DiaryItem/y-DiaryItem",
+    "y-empty": "/components/y-Empty/y-Empty",
+    "y-load-more": "/components/y-LoadMore/y-LoadMore",
+    "y-fab": "/components/y-Fab/y-Fab",
+    "u-modal": "/uview-ui/components/u-modal/u-modal"
+  }
+}

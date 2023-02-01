@@ -1,0 +1,14 @@
+
+.body{
+	   padding-top: 50rpx;
+	  padding-left: 30rpx;
+	  padding-right: 30rpx;
+	  padding-bottom: 50rpx;
+}
+.header{
+	    text-align: center;
+}
+.content{
+	 padding-top: 30rpx;
+}
+

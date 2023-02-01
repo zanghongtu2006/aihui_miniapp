@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "y-empty": "/components/y-Empty/y-Empty",
+    "uni-collapse": "/components/uni-collapse/uni-collapse",
+    "uni-collapse-item": "/components/uni-collapse-item/uni-collapse-item"
+  }
+}

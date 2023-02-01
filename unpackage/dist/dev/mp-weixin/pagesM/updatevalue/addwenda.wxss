@@ -1,0 +1,19 @@
+
+.content.data-v-2a4d7c6b {
+	border: 7rpx solid #F7F7F7;
+	border-radius: 20rpx;
+	margin: 50rpx 30rpx 50rpx 30rpx;
+	padding: 10rpx;
+	padding-bottom: 80rpx;
+}
+.row.data-v-2a4d7c6b {
+	border-bottom: 5rpx solid #F7F7F7;
+	padding-left: 15rpx;
+	padding-top: 30rpx;
+	padding-bottom: 30rpx;
+	margin-left: 10rpx;
+	margin-right: 10rpx;
+	font-size: 28rpx;
+	color: #545454;
+}
+

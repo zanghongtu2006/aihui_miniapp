@@ -1,0 +1,30 @@
+.home.data-v-5c9e5f6c {
+  /* padding-top: 120rpx; */
+}
+.home .top-barrage.data-v-5c9e5f6c {
+  width: 100%;
+  height: 320rpx;
+  overflow: hidden;
+}
+.home .card-bottom.data-v-5c9e5f6c {
+  width: 100%;
+}
+.home .card-bottom .top-tab.data-v-5c9e5f6c {
+  display: flex;
+  height: 120rpx;
+  position: relative;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: #ffffff;
+}
+.home .card-bottom .top-tab .tab-item.data-v-5c9e5f6c {
+  flex: 1;
+  color: #999;
+  border-bottom: 4rpx solid #ececec;
+}
+.home .card-bottom .top-tab .active.data-v-5c9e5f6c {
+  color: #fe7e97;
+  border-bottom: 4rpx solid #fe7e97;
+}
+

@@ -1,0 +1,224 @@
+@charset "UTF-8";
+/* uni.scss */
+/**
+ * 这里是uni-app内置的常用样式变量
+ *
+ * uni-app 官方扩展插件及插件市场（https://ext.dcloud.net.cn）上很多三方插件均使用了这些样式变量
+ * 如果你是插件开发者，建议你使用scss预处理，并在插件代码中直接使用这些变量（无需 import 这个文件），方便用户通过搭积木的方式开发整体风格一致的App
+ *
+ */
+/**
+ * 如果你是App开发者（插件使用者），你可以通过修改这些变量来定制自己的插件主题，实现自定义主题功能
+ *
+ * 如果你的项目同样使用了scss预处理，你也可以直接在你的 scss 代码中使用如下变量，同时无需 import 这个文件
+ */
+/* 颜色变量 */
+/* 行为相关颜色 */
+/* 文字基本颜色 */
+/* 背景颜色 */
+/* 边框颜色 */
+/* 尺寸变量 */
+/* 文字尺寸 */
+/* 图片尺寸 */
+/* Border Radius */
+/* 水平间距 */
+/* 垂直间距 */
+/* 透明度 */
+/* 文章场景相关 */
+page.data-v-655a398e {
+  background: #F2F3F7;
+}
+.container .userinfo-card .card-box.data-v-655a398e {
+  width: 100%;
+  height: 400rpx;
+  position: relative;
+  z-index: 0;
+}
+.container .userinfo-card .card-box .user-section.data-v-655a398e {
+  position: absolute;
+  top: 0;
+  z-index: 10;
+  width: 100%;
+  padding: 50rpx 30rpx 210rpx;
+  display: flex;
+  line-height: 100rpx;
+}
+.container .userinfo-card .card-box .user-section .avatar-wrap.data-v-655a398e {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.container .userinfo-card .card-box .user-section .avatar-wrap .avatar.data-v-655a398e {
+  width: 100%;
+  height: 100%;
+}
+.container .userinfo-card .card-box .user-section .portrait-box.data-v-655a398e {
+  margin-left: 18rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.container .userinfo-card .card-box .user-section .portrait-box .info-box.data-v-655a398e {
+  font-size: 38rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #333;
+}
+.container .userinfo-card .card-box .user-section .portrait-box .tuan.data-v-655a398e {
+  display: flex;
+  align-items: center;
+}
+.container .userinfo-card .card-box .user-section .portrait-box .tuan .ma.data-v-655a398e {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333;
+}
+.container .userinfo-card .card-box .user-section .portrait-box .tuan .fuzi.data-v-655a398e {
+  width: 64rpx;
+  height: 34rpx;
+  background: #CCCCCC;
+  border-radius: 15rpx;
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #333333;
+  text-align: center;
+  line-height: 34rpx;
+  margin-left: 10rpx;
+}
+.container .userinfo-card .card-box .balance-card-wrap.data-v-655a398e {
+  width: 100%;
+  height: 200rpx;
+  padding: 0 20rpx;
+  position: absolute;
+  bottom: 0;
+  z-index: 10;
+}
+.container .userinfo-card .card-box .balance-card-wrap .balance-card.data-v-655a398e {
+  width: 100%;
+  height: 200rpx;
+  background: linear-gradient(90deg, #fddeb8 0%, #f9c378 100%);
+  border-radius: 20rpx;
+  padding: 30rpx;
+}
+.container .userinfo-card .card-box .balance-card-wrap .balance-card .tit.data-v-655a398e {
+  font-size: 32rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #754202;
+}
+.container .userinfo-card .card-box .balance-card-wrap .balance-card .xia.data-v-655a398e {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.container .userinfo-card .card-box .balance-card-wrap .balance-card .xia .num.data-v-655a398e {
+  font-size: 70rpx;
+  font-family: DINPro;
+  font-weight: bold;
+  color: #754202;
+}
+.container .userinfo-card .card-box .balance-card-wrap .balance-card .xia .withdraw-btn.data-v-655a398e {
+  width: 150rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  background: #3B3533;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #F9C378;
+  border-radius: 10rpx;
+}
+.container .main.data-v-655a398e {
+  padding: 20rpx;
+}
+.container .main .income-card.data-v-655a398e {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-top: 20rpx;
+}
+.container .main .income-card .tit.data-v-655a398e {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 32rpx;
+  line-height: 32rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #333333;
+}
+.container .main .income-card .tit image.data-v-655a398e {
+  width: 10rpx;
+  height: 21rpx;
+}
+.container .main .income-card .show-content.data-v-655a398e {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 40rpx;
+}
+.container .main .income-card .show-content .view-category.data-v-655a398e {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.container .main .income-card .show-content .view-category .num.data-v-655a398e {
+  font-size: 38rpx;
+  font-family: PingFang SC;
+  font-weight: 800;
+  color: #333333;
+}
+.container .main .income-card .show-content .view-category .text.data-v-655a398e {
+  font-size: 24rpx;
+  font-family: PingFang SC;
+  font-weight: 500;
+  color: #999999;
+}
+.container .main .income-card .show-content .line.data-v-655a398e {
+  width: 1px;
+  height: 65rpx;
+  background-color: #E6E6E6;
+}
+.container .main .tool-card.data-v-655a398e {
+  background-color: #ffffff;
+  width: 100%;
+  padding: 0 30rpx;
+  margin-top: 20rpx;
+  border-radius: 20rpx;
+}
+.container .main .tool-card .tool-item.data-v-655a398e {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 100rpx;
+  align-items: center;
+  justify-content: space-between;
+}
+.container .main .tool-card .tool-item .view-image-left.data-v-655a398e {
+  width: 44rpx;
+}
+.container .main .tool-card .tool-item .item-right.data-v-655a398e {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.container .main .tool-card .tool-item .item-right .view-text.data-v-655a398e {
+  margin-left: 22rpx;
+  font-size: 28rpx;
+  font-family: PingFang SC;
+  font-weight: bold;
+  color: #1A1A1A;
+}
+.container .main .tool-card .tool-item .item-right .view-image-right.data-v-655a398e {
+  width: 10rpx;
+  height: 21rpx;
+}
+

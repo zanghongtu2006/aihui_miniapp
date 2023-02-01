@@ -1,0 +1,173 @@
+{
+    "name" : "艾惠",
+    "appid" : "__UNI__A51D444",
+    "description" : "cp圈社交",
+    "versionName" : "1.1.3",
+    "versionCode" : 113,
+    "transformPx" : false,
+    "app-plus" : {
+        "modules" : {
+            "Maps" : {},
+            "Payment" : {},
+            "Contacts" : {}
+        },
+        "distribute" : {
+            "android" : {
+                "permissions" : [
+                    "<uses-feature android:name=\"android.hardware.camera\"/>",
+                    "<uses-feature android:name=\"android.hardware.camera.autofocus\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_COARSE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_FINE_LOCATION\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.CAMERA\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.FLASHLIGHT\"/>",
+                    "<uses-permission android:name=\"android.permission.GET_ACCOUNTS\"/>",
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.RECORD_AUDIO\"/>",
+                    "<uses-permission android:name=\"android.permission.VIBRATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_CONTACTS\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+                ],
+                "abiFilters" : [ "armeabi-v7a", "x86" ]
+            },
+            "ios" : {
+                "idfa" : true,
+                "privacyDescription" : {
+                    "NSPhotoLibraryUsageDescription" : "我们需要获取相册在您发表动态或修改头像和交友相册时",
+                    "NSCameraUsageDescription" : "我们需要获取摄像头在您发表动态或修改头像和交友相册时",
+                    "NSMicrophoneUsageDescription" : "我们需要获取麦克风在您聊天时发送语音消息",
+                    "NSLocationWhenInUseUsageDescription" : "我们需要获取定位信息用于向您推荐附近的人或是将您推荐给附近的人",
+                    "NSLocationAlwaysUsageDescription" : "我们需要获取定位信息用于向您推荐附近的人或是将您推荐给附近的人",
+                    "NSLocationAlwaysAndWhenInUseUsageDescription" : "我们需要获取定位信息用于向您推荐附近的人或是将您推荐给附近的人",
+                    "NSLocalNetworkUsageDescription" : "我们需要访问网络以聊天发表动态等"
+                }
+            },
+            "sdkConfigs" : {
+                "ad" : {},
+                "maps" : {
+                    "amap" : {
+                        "appkey_ios" : "77fc1f6a544072ec49e7c67c42b2a732",
+                        "appkey_android" : "9532421b540563b583d40a74591e1d5a"
+                    }
+                },
+                "payment" : {}
+            },
+            "splashscreen" : {
+                "iosStyle" : "common",
+                "androidStyle" : "common",
+                "android" : {
+                    "hdpi" : "E:/cp圈资料/cp圈/cp圈/打包图片/jpg/480.9.png",
+                    "xhdpi" : "E:/cp圈资料/cp圈/cp圈/打包图片/jpg/720.9.png",
+                    "xxhdpi" : "E:/cp圈资料/cp圈/cp圈/打包图片/jpg/1080.9.png"
+                }
+            },
+            "icons" : {
+                "android" : {
+                    "hdpi" : "unpackage/res/icons/72x72.png",
+                    "xhdpi" : "unpackage/res/icons/96x96.png",
+                    "xxhdpi" : "unpackage/res/icons/144x144.png",
+                    "xxxhdpi" : "unpackage/res/icons/192x192.png"
+                },
+                "ios" : {
+                    "appstore" : "unpackage/res/icons/1024x1024.png",
+                    "ipad" : {
+                        "app" : "unpackage/res/icons/76x76.png",
+                        "app@2x" : "unpackage/res/icons/152x152.png",
+                        "notification" : "unpackage/res/icons/20x20.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "proapp@2x" : "unpackage/res/icons/167x167.png",
+                        "settings" : "unpackage/res/icons/29x29.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "spotlight" : "unpackage/res/icons/40x40.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png"
+                    },
+                    "iphone" : {
+                        "app@2x" : "unpackage/res/icons/120x120.png",
+                        "app@3x" : "unpackage/res/icons/180x180.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png",
+                        "notification@3x" : "unpackage/res/icons/60x60.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "settings@3x" : "unpackage/res/icons/87x87.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        "spotlight@3x" : "unpackage/res/icons/120x120.png"
+                    }
+                }
+            }
+        },
+        "usingComponents" : true,
+        "splashscreen" : {
+            "waiting" : false
+        },
+        "nativePlugins" : {
+            "TUICallingUniPlugin-TUICallingModule" : {
+                "__plugin_info__" : {
+                    "name" : "【官方】腾讯云原生音视频插件",
+                    "description" : "TUICalling 是 腾讯云官方推出 的基于腾讯云实时音视频 TRTC 和即时通信 IM 服务组合而成的插件，支持双人和多人音视频通话。插件提供了全套定制UI，开发者仅需三个 API 就可实现",
+                    "platforms" : "Android,iOS",
+                    "url" : "https://ext.dcloud.net.cn/plugin?id=7097",
+                    "android_package_name" : "",
+                    "ios_bundle_id" : "",
+                    "isCloud" : true,
+                    "bought" : 1,
+                    "pid" : "7097",
+                    "parameters" : {}
+                }
+            }
+        }
+    },
+    "quickapp" : {},
+    "mp-weixin" : {
+        "usingComponents" : true,
+        "appid" : "",
+        "setting" : {
+            "urlCheck" : true
+        },
+        "permission" : {
+            "scope.userLocation" : {
+                "desc" : "我们需要获取定位信息用于向您推荐附近的人"
+            }
+        }
+    },
+    "mp-alipay" : {
+        "usingComponents" : true
+    },
+    "mp-baidu" : {
+        "usingComponents" : true
+    },
+    "mp-toutiao" : {
+        "usingComponents" : true
+    },
+    "mp-qq" : {
+        "usingComponents" : true
+    },
+    "h5" : {
+        "title" : "微信公众号",
+        "domain" : "wxmblog.com",
+        "sdkConfigs" : {
+            "maps" : {
+                "qqmap" : {
+                    "key" : "T5IBZ-LOSCX-4JH4X-T5FU5-CCHIZ-W6F3V"
+                }
+            }
+        },
+        "router" : {
+            "base" : "/chatport/",
+            "mode" : "hash"
+        },
+        "devServer" : {
+            "https" : false
+        }
+    },
+    "vueVersion" : "2"
+}
