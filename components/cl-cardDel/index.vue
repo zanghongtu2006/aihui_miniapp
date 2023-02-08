@@ -68,12 +68,17 @@
 <script>
 	import clCardDel from "@/components/cl-cardDel/cl-cardDel";
 	import cardBox from "./card-box";
+	import Server from "@/common/serverutil.js";
+	import Vue from 'vue';
 	export default{ 
 		mixins:[clCardDel],
 		components:{cardBox},
 		data(){
 			return{
-				
+				pageIndex: 1,
+				pageSize: 10,
+				cardcount: 0,
+				empty: true
 			}
 		},
 		onLoad() {
@@ -114,17 +119,42 @@
 			getData(){
 				let promise = new Promise((resolve,reject)=>{
 					let dataGroup = []
-					for (var i = 1; i < 6; i++) {
-						dataGroup.push({
-							src:`../../static/${i}.jpg`,
-							sex:Math.round(Math.random()),
-							address:'杭州(100km)',
-							name:'可爱的小姐姐',
-							constellation:'双鱼座',
-							number:10,
-							old:18
-						})
-					}
+					Server.get("/user/getUserList", {
+						pageIndex: this.pageIndex,
+						pageSize: this.pageSize
+					}, {
+						success: response => {
+							console.log("获取到数据:" + response.data.data.rows.length)
+							this.cardcount = response.data.data.rows.length;
+							if (this.cardcount == 0) {
+								this.empty = true;
+							} else {
+								this.empty = false;
+								for (var i = 1; i < this.cardcount; i++) {
+									var image = Vue.prototype.serveraddress + "/" + response.data.data.rows[i].firstSelfiePath;
+									dataGroup.push({
+										src: image,
+										sex: response.data.data.rows[i].genderId - 2,
+										address:this.getString(response.data.data.rows[i]
+												.address).replace("市", "") + (response.data.data.rows[i]
+												.distanceStr != null && response.data.data
+												.rows[i]
+												.distanceStr != '' ? "(" + self.getString(
+													response.data.data.rows[i].distanceStr) +
+												")" :
+												""),
+										name:response.data.data.rows[i].nickName,
+										constellation:response.data.data.rows[i].xinzuo,
+										number:10,
+										old:response.data.data.rows[i].age
+									})
+								}
+								this.dataList = [...this.dataList,...dataGroup]
+								resolve()
+							}
+						},
+					}, false)
+						
 					this.dataList = [...this.dataList,...dataGroup]
 					resolve()
 				}) 
@@ -165,6 +195,12 @@
 			},
 			tapCard(item){
 				console.log(item,"点击")
+			},
+			getString(data) {
+				if (data == null || data == undefined) {
+					return "";
+				}
+				return data;
 			}
 		}
 		

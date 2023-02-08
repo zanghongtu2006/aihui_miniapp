@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<u-navbar :is-back="true" title="组局" title-color="#fff" back-icon-color="#fff" :back-text-style="{ color: '#fff' }"
-		 back-text="返回" :background="{backgroundColor: '#fe7e97'}"> </u-navbar>
+		 back-text="返回" :background="{backgroundColor: '#ff5500'}"> </u-navbar>
 		<view class="publish-wrap bg-white">
 			<view class="input-box padding-sm">
 				<textarea class="area-top" placeholder="说点什么..." v-model="content"></textarea>
@@ -9,7 +9,7 @@
 			<view class="cu-form-group img-box">
 				<view class="next-title">选择组局类别</view>
 				<u-radio-group style="margin-top: 20rpx;" v-model="gametypetext" @change="radioGroupChange">
-					<u-radio active-color="#fe7e97" @change="radioChange" v-for="(item, index) in list" :key="index" :name="item.name"
+					<u-radio active-color="#ff5500" @change="radioChange" v-for="(item, index) in list" :key="index" :name="item.name"
 					 :disabled="false">
 						{{item.name}}
 					</u-radio>
@@ -19,7 +19,7 @@
 				<view class="row_btn" @click="pushcontent">发起组局</view>
 			</view>
 			<!-- 弹出层 -->
-			<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#fe7e97'}"
+			<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#ff5500'}"
 			 @confirm="confirm()"></u-modal>
 		</view>
 	</view>
@@ -241,7 +241,7 @@
 		width: 80%;
 		height: 100upx;
 		text-align: center;
-		background-image: linear-gradient(to right, #fba3d9, #fe7e97);
+		background-image: linear-gradient(to right, #fba3d9, #ff5500);
 		color: #ffffff;
 		margin: 80upx auto;
 		border-radius: 60upx;

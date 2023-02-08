@@ -1,7 +1,7 @@
 <template>
 	<view class="container">
 		<u-navbar :is-back="true" title="" title-color="#fff" back-icon-color="#fff"
-			:back-text-style="{ color: '#fff' }" back-text="返回" :background="{backgroundColor: '#fe7e97'}"> </u-navbar>
+			:back-text-style="{ color: '#fff' }" back-text="返回" :background="{backgroundColor: '#ff5500'}"> </u-navbar>
 		<view class="userinfo-card">
 			<view class="card-box">
 				<view class="user-section">

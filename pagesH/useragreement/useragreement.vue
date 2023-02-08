@@ -1,7 +1,7 @@
 <template>
 	<view class="body">
 		<u-navbar :is-back="true" title="用户协议及隐私条款" title-color="#fff" back-icon-color="#fff" :back-text-style="{ color: '#fff' }"
-		 back-text="返回" :background="{backgroundColor: '#fe7e97'}"> </u-navbar>
+		 back-text="返回" :background="{backgroundColor: '#ff5500'}"> </u-navbar>
 		 <view class="header">用户协议及隐私条款</view>
 		  <view class="content">
 			   <text>

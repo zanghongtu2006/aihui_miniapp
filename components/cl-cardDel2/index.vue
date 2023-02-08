@@ -79,7 +79,7 @@
     </view>-->
 		<!-- 弹出层 -->
 		<u-modal v-model="show" :title="title" :content="content" width="70%" :show-cancel-button="showcancelbutton"
-			:confirm-style="{color: '#fe7e97'}" :confirm-text="confirmtext" :cancel-text="canceltext"
+			:confirm-style="{color: '#ff5500'}" :confirm-text="confirmtext" :cancel-text="canceltext"
 			@confirm="confirm()" @cancel="cancel()"></u-modal>
 	</view>
 	<y-Empty v-else-if="cardcount==0&&empty==true" emptyText="休息一会吧,没有更多资料了" />

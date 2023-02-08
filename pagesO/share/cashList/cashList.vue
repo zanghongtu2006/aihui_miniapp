@@ -1,7 +1,7 @@
 <template>
 	<view style="text-align: left">
 		<u-navbar :is-back="true" title="" title-color="#fff" back-icon-color="#fff"
-			:back-text-style="{ color: '#fff' }" back-text="返回" :background="{backgroundColor: '#fe7e97'}"> </u-navbar>
+			:back-text-style="{ color: '#fff' }" back-text="返回" :background="{backgroundColor: '#ff5500'}"> </u-navbar>
 		<view v-for="(item, index) in list" :key="index" class="item">
 			<view>
 				<view style="margin-bottom: 8upx;text-align: right;">

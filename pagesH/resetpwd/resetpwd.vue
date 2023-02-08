@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<u-navbar :is-back="false" title="找回密码" title-color="#fff" back-icon-color="#fff" :back-text-style="{ color: '#fff' }"  back-text="返回"  :background="{backgroundColor: '#fe7e97'}"> </u-navbar>
+		<u-navbar :is-back="false" title="找回密码" title-color="#fff" back-icon-color="#fff" :back-text-style="{ color: '#fff' }"  back-text="返回"  :background="{backgroundColor: '#ff5500'}"> </u-navbar>
 	    <view class="mine-wrap" :style="{ minHeight: mineBoxHeight}">
 	    	<view class="login_line">
 	    		<input class="login_line_input" type="number" v-model="phone" placeholder="请输入手机号码" />
@@ -15,7 +15,7 @@
 			</view>
 	    </view>
 	    <!-- 弹出层 -->
-	    <u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#fe7e97'}"></u-modal>
+	    <u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#ff5500'}"></u-modal>
 	</view>
 </template>
 
@@ -159,7 +159,7 @@
 		width: 94%;
 		height: 80upx;
 		text-align: center;
-		background: #fe7e97;
+		background: #ff5500;
 		color: #ffffff;
 		margin: 100upx auto;
 		border-radius: 10upx;

@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<u-navbar :is-back="true" title="个人信息" title-color="#fff" back-icon-color="#fff" :back-text-style="{ color: '#fff' }"
-		 back-text="返回" :background="{backgroundColor: '#fe7e97'}"> </u-navbar>
+		 back-text="返回" :background="{backgroundColor: '#ff5500'}"> </u-navbar>
 		<view class="page" :style="{ height: mineBoxHeight }">
 			<!-- <view class="wrap">
 	    			<view class="u-avatar-wrap">
@@ -70,7 +70,7 @@
 			</view>
 		</view>
 		<!-- 弹出层 -->
-		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#fe7e97'}"
+		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#ff5500'}"
 		 @confirm="confirm()"></u-modal>
 	</view>
 </template>
@@ -362,7 +362,7 @@
 </script>
 
 <style lang="less" scoped>
-	@mainColor: #fe7e97;
+	@mainColor: #ff5500;
 
 	.flexAllCenter {
 		display: flex;

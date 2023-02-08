@@ -36,7 +36,7 @@ export default {
     },
     headerBgColor: {
       type: String,
-      default: '#FE7E97'
+      default: '#ff5500'
     },
     headerHeight: {
       type: Number,
@@ -58,7 +58,7 @@ export default {
 // export default class AppContainer extends Vue {
 //   @Prop({ default: '', type: String }) title!: string
 //   @Prop({ type: Boolean, default: false }) hasBackBtn!: boolean
-//   @Prop({ type: String, default: '#FE7E97' }) headerBgColor!: string
+//   @Prop({ type: String, default: '#ff5500' }) headerBgColor!: string
 //   @Prop({ type: Number, default: 0 }) headerHeight!: number
 //   get statusBarHeight() {
 //     const { statusBarHeight } = getApp().globalData as any

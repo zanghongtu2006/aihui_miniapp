@@ -355,7 +355,7 @@
 				display: flex;
 				justify-content: center;
 				align-items: center;
-				background: #fe7e97;
+				background: #ff5500;
 				font-size: 24upx;
 				color: #fff;
 				height: 30upx;

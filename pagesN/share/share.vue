@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<u-navbar v-if="shareSelect==true" :is-back="true" title="" title-color="#fff" back-icon-color="#fff"
-			:back-text-style="{ color: '#fff' }" back-text="返回" :background="{backgroundColor: '#fe7e97'}"> </u-navbar>
+			:back-text-style="{ color: '#fff' }" back-text="返回" :background="{backgroundColor: '#ff5500'}"> </u-navbar>
 		<view  v-if="shareSelect==true" class="mine-wrap" :style="{ minHeight: mineBoxHeight }">
 			<view class="login_line">
 				分享成功注册{{sharenum}}个，就得一个月会员
@@ -18,7 +18,7 @@
 		</view>
 		<!-- 弹出层 -->
 		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%"
-			:confirm-style="{color: '#fe7e97'}"></u-modal>
+			:confirm-style="{color: '#ff5500'}"></u-modal>
 	</view>
 </template>
 <script>
@@ -185,7 +185,7 @@
 		width: 80%;
 		height: 100upx;
 		text-align: center;
-		background-image: linear-gradient(to right, #fba3d9, #fe7e97);
+		background-image: linear-gradient(to right, #fba3d9, #ff5500);
 		color: #ffffff;
 		margin: 80upx auto;
 		border-radius: 60upx;

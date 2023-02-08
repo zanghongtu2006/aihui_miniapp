@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<u-navbar :is-back="false" title="遇见" title-color="#fff" back-icon-color="#fff"
-			:back-text-style="{ color: '#fff' }" back-text="返回" :background="{ backgroundColor: '#fe7e97' }">
+			:back-text-style="{ color: '#fff' }" back-text="返回" :background="{ backgroundColor: '#ff5500' }">
 		</u-navbar>
 
 		<view class="content">
@@ -18,9 +18,9 @@
 			</view>
 			<!-- <button type="primary" @click="connect">连接websocket服务</button> -->
 			<!-- 弹出层 -->
-			<!-- <u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{ color: '#fe7e97' }"></u-modal> -->
+			<!-- <u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{ color: '#ff5500' }"></u-modal> -->
 			<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%"
-				:show-cancel-button="showcancelbutton" :confirm-style="{color: '#fe7e97'}" :confirm-text="confirmtext"
+				:show-cancel-button="showcancelbutton" :confirm-style="{color: '#ff5500'}" :confirm-text="confirmtext"
 				:cancel-text="canceltext" @confirm="confirm()" @cancel="cancel()"></u-modal>
 		</view>
 	</view>

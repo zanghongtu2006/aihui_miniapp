@@ -1,13 +1,14 @@
 <script>
-	
 	//
 	// #ifdef H5
 	import pageAnimation from './components/y-pageAnimation/index.vue'
 	// #endif
-	
+
 	// #ifdef APP-PLUS
 	import TIM from 'tim-wx-sdk';
-	import { genTestUserSig } from './common/TXIM/GenerateTestUserSig.js'
+	import {
+		genTestUserSig
+	} from './common/TXIM/GenerateTestUserSig.js'
 	const TUICalling = uni.requireNativePlugin('TUICallingUniPlugin-TUICallingModule');
 	// #endif
 
@@ -39,13 +40,13 @@
 			uni.$TUIKit = TIM.create({
 				SDKAppID: SDKAppID
 			});
-			
+
 			uni.$TUICalling = TUICalling;
 			// #endif
 		},
 		globalData: {
 			// #ifdef APP-PLUS
-				SDKAppID: genTestUserSig('').sdkAppID,
+			SDKAppID: genTestUserSig('').sdkAppID,
 			// #endif
 		}
 	};
@@ -63,46 +64,46 @@
 	}
 
 	/* #endif */
-	
+
 	@import 'colorui/main.css';
 	@import 'colorui/icon.css';
 	@import 'colorui/animation.css';
-	
+
 	/*每个页面公共css */
-	
-	
+
+
 	page {
 		--mainColor: #435257;
-		--activeColor: #fe7e97;
+		--activeColor: #ff5500;
 	}
-	
+
 	body {
 		font-family: 'AliR';
 		//background-color: #f5f8f9;
 	}
-	
+
 	view {
 		box-sizing: border-box;
 	}
-	
+
 	.flex-center {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 	}
-	
+
 	.mainColor {
 		color: var(--mainColor);
 	}
-	
+
 	.aColor {
 		color: var(--activeColor);
 	}
-	
-	.color-nine{
+
+	.color-nine {
 		color: #999999;
 	}
-	
+
 	.main-btn {
 		border-radius: 40upx;
 		display: flex;
@@ -112,21 +113,21 @@
 		border: 1upx solid var(--mainColor);
 		padding: 10rpx 40rpx;
 	}
-	
+
 	.active-btn {
 		color: #FFFFFF !important;
 		background-color: var(--activeColor) !important;
 		border: 1upx solid var(--activeColor) !important;
 	}
-	
+
 	/* 点赞和评论 */
 	.bottom-btn {
 		display: flex;
-	
+
 		.btn-item {
 			flex: 1;
 			color: var(--mainColor);
-	
+
 			.img {
 				width: 50rpx;
 				height: 50rpx;

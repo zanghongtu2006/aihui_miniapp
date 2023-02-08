@@ -37,7 +37,7 @@
 				</view>
 				<view class="progress-label">资料完成度高于80%，预计曝光率提高1倍</view> -->
 				<view class="progress-img">
-					<u-line-progress active-color="#fe7e97" :percent="percent"></u-line-progress>
+					<u-line-progress active-color="#ff5500" :percent="percent"></u-line-progress>
 				</view>
 				<view v-if="percent>=80" class="progress-label">资料完成度高于{{percent}}%，预计曝光率优秀</view>
 				<view v-else-if="percent<80&&percent>=60" class="progress-label">资料完成度{{percent}}%，预计曝光率良好</view>
@@ -165,7 +165,7 @@
 		</view>
 		<!-- 弹出层 -->
 		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%"
-			:confirm-style="{color: '#fe7e97'}"></u-modal>
+			:confirm-style="{color: '#ff5500'}"></u-modal>
 	</view>
 </template>
 
@@ -341,7 +341,7 @@
 </script>
 
 <style lang="less" scoped>
-	@mainColor: #fe7e97;
+	@mainColor: #ff5500;
 
 	.flexAllCenter {
 		display: flex;

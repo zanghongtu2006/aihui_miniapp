@@ -1,25 +1,25 @@
 <template>
 	<view>
 		<u-navbar :is-back="true" title="向我显示设置" title-color="#fff" back-icon-color="#fff" :back-text-style="{ color: '#fff' }"
-		 back-text="返回" :background="{backgroundColor: '#fe7e97'}"> </u-navbar>
+		 back-text="返回" :background="{backgroundColor: '#ff5500'}"> </u-navbar>
 		<view class="mine-wrap" :style="{ minHeight: mineBoxHeight }">
 			<view class="login_line">
 				<view class="login_line_title">性别：</view>
 				<view style="width: 100%;" @tap="showselect">{{genderText}}</view>
 				<u-select v-model="showgender" :default-value="defaultgender" mode="single-column" :list="list" @confirm="confirmgender"
-				 confirm-color="#fe7e97"></u-select>
+				 confirm-color="#ff5500"></u-select>
 			</view>
 			<view class="login_line">
 				<view class="login_line_title">年龄：</view>
 				<RangeSlider :width="slideWidth" :height="slideHeight" :blockSize="slideBlockSize" :min="slideMin" :max="slideMax"
-				 :values="rangeValues" :step="step" :liveMode="isLiveMode" active-color="#fe7e97" @rangechange="onRangeChange">
+				 :values="rangeValues" :step="step" :liveMode="isLiveMode" active-color="#ff5500" @rangechange="onRangeChange">
 					<view slot="minBlock" class="range-slider-block"></view>
 					<!-- 左边滑块的内容 -->
 					<view slot="maxBlock" class="range-slider-block"></view>
 					<!-- 右边滑块的内容 -->
 				</RangeSlider>
 
-				<view style="color:#fe7e97;margin-left: 20rpx;">
+				<view style="color:#ff5500;margin-left: 20rpx;">
 					{{rangeValues[0]}}~{{rangeValues[1]}}
 				</view>
 			</view>
@@ -27,12 +27,12 @@
 				<view class="login_line_title">阶段：</view>
 				<view style="width: 100%;" @tap="stageshowselect">{{stageText}}</view>
 				<u-select v-model="showstage" :default-value="defaultstage" mode="single-column" :list="liststage" @confirm="confirmstage"
-				 confirm-color="#fe7e97"></u-select>
+				 confirm-color="#ff5500"></u-select>
 			</view>
 			<view class="login_btn" @tap="login">保存</view>
 		</view>
 		<!-- 弹出层 -->
-		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#fe7e97'}"></u-modal>
+		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#ff5500'}"></u-modal>
 	</view>
 </template>
 
@@ -272,7 +272,7 @@
 		width: 94%;
 		height: 80upx;
 		text-align: center;
-		background: #fe7e97;
+		background: #ff5500;
 		color: #ffffff;
 		margin: 100upx auto;
 		border-radius: 10upx;

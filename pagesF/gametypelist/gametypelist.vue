@@ -1,7 +1,7 @@
 <template>
 	<view class="main">
 		<u-navbar :is-back="true" :title="title" title-color="#fff" back-icon-color="#fff"
-			:back-text-style="{ color: '#fff' }" back-text="返回" :background="{ backgroundColor: '#fe7e97' }">
+			:back-text-style="{ color: '#fff' }" back-text="返回" :background="{ backgroundColor: '#ff5500' }">
 		</u-navbar>
 		<!-- <u-search placeholder="搜索组局" @search="saerch()" :clearabled="false" v-model="keyword" :show-action="true" action-text="搜索"
 		 :animation="true"></u-search> -->
@@ -16,10 +16,10 @@
 					<view v-if="samecitybool" class="main_param_left_txt">
 						<text @click="allcity()">推荐</text>
 						<text>/</text>
-						<text style="color:#fe7e97;">同城</text>
+						<text style="color:#ff5500;">同城</text>
 					</view>
 					<view v-else class="main_param_left_txt">
-						<text style="color:#fe7e97;">推荐</text>
+						<text style="color:#ff5500;">推荐</text>
 						<text>/</text>
 						<text @click="samecity()">同城</text>
 					</view>
@@ -34,9 +34,9 @@
 					shape="circle" bg-color="#EFFEF6" color="#72CD9D" border-color="#EFFEF6" />
 			</view>
 			<u-select v-model="show" mode="single-column" :list="selectlist" @confirm="confirmsex"
-				confirm-color="#fe7e97"></u-select>
+				confirm-color="#ff5500"></u-select>
 			<u-select v-model="showtype" mode="single-column" :list="selectlist" @confirm="confirmtype"
-				confirm-color="#fe7e97"></u-select>
+				confirm-color="#ff5500"></u-select>
 		</view>
 
 		<view class="main_info">
@@ -76,7 +76,7 @@
 			<y-LoadMore :status="loadMoreStatus" />
 		</view>
 		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%"
-			:show-cancel-button="showcancelbutton" :confirm-style="{color: '#fe7e97'}" :confirm-text="confirmtext"
+			:show-cancel-button="showcancelbutton" :confirm-style="{color: '#ff5500'}" :confirm-text="confirmtext"
 			:cancel-text="canceltext" @confirm="confirm()" @cancel="cancel()"></u-modal>
 	</view>
 </template>
@@ -636,7 +636,7 @@
 				font-size: 20upx;
 				padding: 2upx 10upx;
 				border-radius: 20upx;
-				color: #fe7e97;
+				color: #ff5500;
 				border: 1px solid currentColor;
 
 				.heart-icon {

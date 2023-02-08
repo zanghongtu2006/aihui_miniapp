@@ -1,7 +1,7 @@
 <template>
 	<view class="main">
 		<u-navbar :is-back="false" title="组局约玩" title-color="#fff" back-icon-color="#fff"
-			:back-text-style="{ color: '#fff' }" back-text="返回" :background="{ backgroundColor: '#fe7e97' }">
+			:back-text-style="{ color: '#fff' }" back-text="返回" :background="{ backgroundColor: '#ff5500' }">
 		</u-navbar>
 
 		<u-search placeholder="搜索组局" @search="saerch()" :clearabled="false" v-model="keyword" :show-action="true"
@@ -9,7 +9,7 @@
 
 		<view class="main_bar">
 
-			<swiper class="swiper" indicator-active-color="#fe7e97" :indicator-dots="true" :autoplay="false"
+			<swiper class="swiper" indicator-active-color="#ff5500" :indicator-dots="true" :autoplay="false"
 				:circular="true" style="height: 380rpx;">
 
 				<swiper-item>
@@ -193,10 +193,10 @@
 					<view v-if="samecitybool" class="main_param_left_txt">
 						<text @click="allcity()">推荐</text>
 						<text>/</text>
-						<text style="color:#fe7e97;">同城</text>
+						<text style="color:#ff5500;">同城</text>
 					</view>
 					<view v-else class="main_param_left_txt">
-						<text style="color:#fe7e97;">推荐</text>
+						<text style="color:#ff5500;">推荐</text>
 						<text>/</text>
 						<text @click="samecity()">同城</text>
 					</view>
@@ -211,9 +211,9 @@
 					bg-color="#EFFEF6" color="#72CD9D" border-color="#EFFEF6" />
 			</view>
 			<u-select v-model="show" mode="single-column" :list="selectlist" @confirm="confirmsex"
-				confirm-color="#fe7e97"></u-select>
+				confirm-color="#ff5500"></u-select>
 			<u-select v-model="showtype" mode="single-column" :list="selectlist" @confirm="confirmtype"
-				confirm-color="#fe7e97"></u-select>
+				confirm-color="#ff5500"></u-select>
 		</view>
 
 		<view class="main_info">
@@ -255,7 +255,7 @@
 			<y-LoadMore :status="loadMoreStatus" />
 		</view>
 		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%"
-			:show-cancel-button="showcancelbutton" :confirm-style="{color: '#fe7e97'}" :confirm-text="confirmtext"
+			:show-cancel-button="showcancelbutton" :confirm-style="{color: '#ff5500'}" :confirm-text="confirmtext"
 			:cancel-text="canceltext" @confirm="confirm()" @cancel="cancel()"></u-modal>
 
 		<!-- 右下角按钮 -->
@@ -371,13 +371,13 @@
 				samecitybool: false,
 				//fab的设置
 				fabList: [{
-						bgColor: '#fe7e97',
+						bgColor: '#ff5500',
 						text: '组局',
 						fontSize: 28,
 						color: '#fff'
 					},
 					{
-						bgColor: '#fe7e97',
+						bgColor: '#ff5500',
 						text: '我的组局',
 						fontSize: 22,
 						color: '#fff'
@@ -812,7 +812,7 @@
 				font-size: 20upx;
 				padding: 2upx 10upx;
 				border-radius: 20upx;
-				color: #fe7e97;
+				color: #ff5500;
 				border: 1px solid currentColor;
 
 				.heart-icon {

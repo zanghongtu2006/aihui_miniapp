@@ -2,7 +2,7 @@
 	<!-- 	<AppContainer title="动态"> -->
 	<view>
 		<u-navbar :is-back="false" title="动态" title-color="#fff" back-icon-color="#fff" :back-text-style="{ color: '#fff' }"
-		 back-text="返回" :background="{backgroundColor: '#fe7e97'}"> </u-navbar>
+		 back-text="返回" :background="{backgroundColor: '#ff5500'}"> </u-navbar>
 		<view class="home">
 			<view class="card-bottom">
 				<!-- 顶部分页栏 -->
@@ -41,7 +41,7 @@
 				<y-Fab :bottom="140" :right="40" :btnList="fabList" @click="handleFab" />
 			</view>
 			<!-- 弹出层 -->
-			<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#fe7e97'}"></u-modal>
+			<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#ff5500'}"></u-modal>
 		</view>
 	</view>
 
@@ -79,13 +79,13 @@
 				loadMoreStatus: 1, //0加载前，1加载中，2没有更多了
 				//fab的设置
 				fabList: [{
-						bgColor: '#fe7e97',
+						bgColor: '#ff5500',
 						text: '发布',
 						fontSize: 28,
 						color: '#fff'
 					},
 					{
-						bgColor: '#fe7e97',
+						bgColor: '#ff5500',
 						text: '我的动态',
 						fontSize: 22,
 						color: '#fff'
@@ -418,8 +418,8 @@
 				}
 
 				.active {
-					color: #fe7e97;
-					border-bottom: 4rpx solid #fe7e97;
+					color: #ff5500;
+					border-bottom: 4rpx solid #ff5500;
 				}
 			}
 		}

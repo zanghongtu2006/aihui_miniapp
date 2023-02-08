@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<u-navbar :is-back="false" title="登录" title-color="#fff" back-icon-color="#fff" :back-text-style="{ color: '#fff' }"
-		 back-text="返回" :background="{backgroundColor: '#fe7e97'}"> </u-navbar>
+		 back-text="返回" :background="{backgroundColor: '#ff5500'}"> </u-navbar>
 		<view class="mine-wrap" :style="{ minHeight: mineBoxHeight }">
 			<!-- <image class="login_img" src="https://img2.woyaogexing.com/2020/06/20/c956bf6d164c40c28a7a288dd010da26!400x400.jpeg"
 			 mode=""></image> -->
@@ -26,7 +26,7 @@
 
 		</view>
 		<!-- 弹出层 -->
-		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#fe7e97'}"></u-modal>
+		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#ff5500'}"></u-modal>
 
 
 		<u-popup mode="center" :mask-close-able="false" v-model="showpopup">
@@ -34,7 +34,7 @@
 				<view class="title">服务协议和隐私政策</view>
 
 				<view class="content">
-					尊敬的用户，欢迎您注册成为用户，在注册前请您仔细阅读<text @click="gotouseragement()" style="color:#fe7e97;">《用户协议及隐私政策》</text>，了解我们对您使用我们APP制定的规则，您个人信息的处理以及申请权限的目的和使用范围。
+					尊敬的用户，欢迎您注册成为用户，在注册前请您仔细阅读<text @click="gotouseragement()" style="color:#ff5500;">《用户协议及隐私政策》</text>，了解我们对您使用我们APP制定的规则，您个人信息的处理以及申请权限的目的和使用范围。
 					　　经您确认后，本用户协议和隐私权政策即在您和cp圈之间产生法律效力。请您务必在注册之前认真阅读全部服务协议内容，如有任何疑问，可向cp圈客服咨询。
 				</view>
 				<view class="agebtn">
@@ -259,7 +259,7 @@
 		width: 94%;
 		height: 80upx;
 		text-align: center;
-		background: #fe7e97;
+		background: #ff5500;
 		color: #ffffff;
 		margin: 100upx auto;
 		border-radius: 10upx;
@@ -293,7 +293,7 @@
 		width: 30%;
 		height: 80upx;
 		text-align: center;
-		background: #fe7e97;
+		background: #ff5500;
 		color: #ffffff;
 		float: right;
 		border-radius: 10upx;

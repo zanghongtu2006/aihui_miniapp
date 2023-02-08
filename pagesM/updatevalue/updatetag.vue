@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<u-navbar :is-back="true" title="个性标签" title-color="#fff" back-icon-color="#fff" :back-text-style="{ color: '#fff' }"
-		 back-text="返回" :background="{backgroundColor: '#fe7e97'}"> </u-navbar>
+		 back-text="返回" :background="{backgroundColor: '#ff5500'}"> </u-navbar>
 		<view class="main">
 			<view class="row_title">
 				个人需求
@@ -9,7 +9,7 @@
 			<view>
 				<u-checkbox-group @change="checkboxGroupChange">
 					<u-checkbox v-model="item.checked" v-for="(item, index) in makefriendsdeman" :key="item.id" :name="item.id"
-					 active-color="#fe7e97">{{item.name}}</u-checkbox>
+					 active-color="#ff5500">{{item.name}}</u-checkbox>
 				</u-checkbox-group>
 			</view>
 
@@ -19,7 +19,7 @@
 			<view>
 				<u-checkbox-group @change="checkboxGroupChangepersonalitytag">
 					<u-checkbox v-model="item.checked" v-for="(item, index) in personalitytag" :key="item.id" :name="item.id"
-					 active-color="#fe7e97">{{item.name}}</u-checkbox>
+					 active-color="#ff5500">{{item.name}}</u-checkbox>
 				</u-checkbox-group>
 			</view>
 
@@ -28,7 +28,7 @@
 			</view>
 			<view>
 				<u-checkbox-group @change="checkboxGroupChangemusic">
-					<u-checkbox v-model="item.checked" v-for="(item, index) in music" :key="item.id" :name="item.id" active-color="#fe7e97">{{item.name}}</u-checkbox>
+					<u-checkbox v-model="item.checked" v-for="(item, index) in music" :key="item.id" :name="item.id" active-color="#ff5500">{{item.name}}</u-checkbox>
 				</u-checkbox-group>
 			</view>
 
@@ -37,7 +37,7 @@
 			</view>
 			<view>
 				<u-checkbox-group @change="checkboxGroupChangemotion">
-					<u-checkbox v-model="item.checked" v-for="(item, index) in motion" :key="item.id" :name="item.id" active-color="#fe7e97">{{item.name}}</u-checkbox>
+					<u-checkbox v-model="item.checked" v-for="(item, index) in motion" :key="item.id" :name="item.id" active-color="#ff5500">{{item.name}}</u-checkbox>
 				</u-checkbox-group>
 			</view>
 
@@ -47,11 +47,11 @@
 			<view>
 				<u-checkbox-group @change="checkboxGroupChangeconversation">
 					<u-checkbox v-model="item.checked" v-for="(item, index) in conversation" :key="item.id" :name="item.id"
-					 active-color="#fe7e97">{{item.name}}</u-checkbox>
+					 active-color="#ff5500">{{item.name}}</u-checkbox>
 				</u-checkbox-group>
 			</view>
 			<!-- 弹出层 -->
-			<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#fe7e97'}"></u-modal>
+			<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#ff5500'}"></u-modal>
 		</view>
 	</view>
 </template>

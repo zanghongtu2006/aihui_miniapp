@@ -23,7 +23,7 @@
 					<view v-if="item.genderId==2" class="sex-group" style="background-color: #0FBCF9;">
 						<image class="sex" :src="require('@/static/icon/male.png')" />
 					</view>
-					<view v-else class="sex-group" style="background-color: #fe7e97;">
+					<view v-else class="sex-group" style="background-color: #ff5500;">
 						<image class="sex" :src="require('@/static/icon/female.png')" />
 					</view>
 					<text class="text">上次活跃 {{item.latelyTimeStr}}</text>
@@ -36,11 +36,11 @@
 
 		</view>
 		<y-LoadMore v-if="beckoningList && beckoningList.length > 0" :status="loadMoreStatus" />
-		<!-- <u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{ color: '#fe7e97' }"
+		<!-- <u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{ color: '#ff5500' }"
 		 @confirm="confirm"></u-modal> -->
 
 		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%"
-			:show-cancel-button="showcancelbutton" :confirm-style="{color: '#fe7e97'}" :confirm-text="confirmtext"
+			:show-cancel-button="showcancelbutton" :confirm-style="{color: '#ff5500'}" :confirm-text="confirmtext"
 			:cancel-text="canceltext" @confirm="confirm()" @cancel="cancel()"></u-modal>
 	</view>
 </template>
@@ -363,13 +363,13 @@
 			position: relative;
 
 			&.active {
-				color: #fe7e97;
+				color: #ff5500;
 
 				&::after {
 					content: "";
 					width: 100upx;
 					height: 2px;
-					background-color: #fe7e97;
+					background-color: #ff5500;
 					position: absolute;
 					bottom: 0;
 				}
@@ -428,7 +428,7 @@
 				font-size: 20upx;
 				padding: 2upx 10upx;
 				border-radius: 20upx;
-				color: #fe7e97;
+				color: #ff5500;
 				border: 1px solid currentColor;
 
 				.heart-icon {

@@ -1,14 +1,14 @@
 <template>
 	<view>
 		<u-navbar :is-back="true" title="我的问答" title-color="#fff" back-icon-color="#fff" :back-text-style="{ color: '#fff' }"
-		 back-text="返回" :background="{backgroundColor: '#fe7e97'}"> </u-navbar>
+		 back-text="返回" :background="{backgroundColor: '#ff5500'}"> </u-navbar>
 		<view class="content">
 			<view class="row" v-for="(item, index) in data" @click="addanswer(item)">
 				{{item.problemTitle}}
 			</view>
 		</view>
 		<!-- 弹出层 -->
-		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#fe7e97'}"></u-modal>
+		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#ff5500'}"></u-modal>
 	</view>
 </template>
 
