@@ -1,6 +1,0 @@
-{
-  "component": true,
-  "usingComponents": {
-    "card-box": "/components/cl-cardDel/card-box"
-  }
-}
