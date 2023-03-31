@@ -1,6 +1,5 @@
 /* 
 本下载插件为体验版，需要完整前后端加管理后台程序 可以加微信：MMRWXM  获取, 请备注uniapp
-完整版演示地址 https://www.wxmblog.com/cp
 运营端 http://1.14.110.117:7102/ 111111111111 123456
 登录账号1：15261133552 密码：123456
 登录账号2：00000000010 密码：123456
@@ -60,7 +59,8 @@ Vue.use(uView);
 Vue.config.productionTip = false
 App.mpType = 'app'
 Vue.prototype.websocketurl = 'wss://www.wxmblog.com/wss' 
-Vue.prototype.serveraddress = 'https://www.wxmblog.com/serverapi'
+Vue.prototype.serveraddress = 'https://aihui.zanghongtu.com'
+// Vue.prototype.serveraddress = 'https://www.wxmblog.com/serverapi'
 //app版本
 
 Vue.prototype.fronturl='https://www.wxmblog.com/chatport'
