@@ -148,7 +148,7 @@
 			toChat(userId, nickName, sendUserId) {
 				let self = this;
 				/* 	if (sendUserId != 1) {
-						Server.get("/user/getUserInfo/" + sendUserId, {}, {
+						Server.get("/users/" + sendUserId, {}, {
 							success: response => {
 								let userinfo = response.data.data;
 								if (userinfo.onlySeeVip != null && userinfo.onlySeeVip == true) {

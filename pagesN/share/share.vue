@@ -84,7 +84,7 @@
 					this.shareSelect=true;
 					let userId =
 						uni.getStorageSync("loginuserinfo") &&
-						uni.getStorageSync("loginuserinfo").user && uni.getStorageSync("loginuserinfo").user.id;
+						uni.getStorageSync("loginuserinfo").id;
 						if(userId!=null)
 						{
 							

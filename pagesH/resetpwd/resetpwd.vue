@@ -50,9 +50,9 @@
 		},
 		methods: {
 			getVerifyCode() {
-				Server.post("/Iqnore/SendSms", {
-					phone: this.phone,
-					messageType: "RESETPWD"
+				Server.post("/register/captcha", {
+					mobile: this.phone,
+					captchaType: "RESETPWD"
 				}, {
 					success: response => {
 						var countDown = setInterval(() => {

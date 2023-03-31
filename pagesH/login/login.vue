@@ -7,7 +7,7 @@
 			 mode=""></image> -->
 			<view class="login_line">
 				<view class="login_line_title">手机号</view>
-				<input class="login_line_input" type="number" v-model="loginNum" name="" id="" placeholder="请输入手机号码" />
+				<input class="login_line_input" type="number" v-model="username" name="" id="" placeholder="请输入手机号码" />
 			</view>
 			<view class="login_line">
 				<view class="login_line_title">密码</view>
@@ -35,7 +35,7 @@
 
 				<view class="content">
 					尊敬的用户，欢迎您注册成为用户，在注册前请您仔细阅读<text @click="gotouseragement()" style="color:#ff5500;">《用户协议及隐私政策》</text>，了解我们对您使用我们APP制定的规则，您个人信息的处理以及申请权限的目的和使用范围。
-					　　经您确认后，本用户协议和隐私权政策即在您和cp圈之间产生法律效力。请您务必在注册之前认真阅读全部服务协议内容，如有任何疑问，可向cp圈客服咨询。
+					　　经您确认后，本用户协议和隐私权政策即在您和艾惠之间产生法律效力。请您务必在注册之前认真阅读全部服务协议内容，如有任何疑问，可向艾惠客服咨询。
 				</view>
 				<view class="agebtn">
 					<view class="disagement_btn" @click="disagement()">不同意</view>
@@ -83,7 +83,7 @@
 		},
 		data() {
 			return {
-				loginNum: "",
+				username: "",
 				password: "",
 				modelshow: false,
 				modeltitle: "",
@@ -103,15 +103,33 @@
 			},
 			login() {
 				let self = this;
-				Server.post("/user/login", {
-					loginNum: this.loginNum,
-					password: this.password
+				Server.get("/oauth/token", {
+					username: self.username,
+					password: self.password,
+					grant_type: 'password',
+					client_id: 'clientA',
+					client_secret: '123456',
+					scope: 'all',
 				}, {
 					success: response => {
 						//保存登录信息
 						try {
-							
-							uni.setStorageSync('loginuserinfo', response.data.data);
+							uni.setStorageSync('logintokeninfo', response.data);
+							Server.get("/users/self", {}, {
+								success: response => {
+									uni.setStorageSync('loginuserinfo', response.data.data);
+								}, 
+								warnings: response => {
+									this.modelcontent = response;
+									this.modeltitle = "警告";
+									this.modelshow = true;
+								},
+								error: response => {
+									this.modelcontent = response;
+									this.modeltitle = "错误";
+									this.modelshow = true;
+								}
+							})
 							//跳转到首页
 							uni.switchTab({
 								url: '/pages/index/index'
@@ -200,7 +218,7 @@
 	//     uni.request({
 	//         url: Vue.prototype.websiteUrl+"/user/login", //仅为示例，并非真实接口地址。
 	//         data: {
-	//             loginNum: '15261133553',
+	//             username: '15261133553',
 	// 			password:'123456'
 	//         },
 	// 		header:{

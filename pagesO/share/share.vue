@@ -162,9 +162,9 @@
 				let self = this;
 				let userId =
 					uni.getStorageSync("loginuserinfo") &&
-					uni.getStorageSync("loginuserinfo").user && uni.getStorageSync("loginuserinfo").user.id;
+					uni.getStorageSync("loginuserinfo").id;
 					
-					Server.get("/user/getUserInfoCheck/" +userId, {}, {
+					Server.get("/users/getUserInfoCheck/" +userId, {}, {
 						success: response => {
 							self.userinfo = response.data.data;
 						},
@@ -259,7 +259,7 @@
 			},
 			//获取用户信息
 			getUserInfo(userId) {
-				this.$Request.getT('/user/selectUserById?userId=' + userId).then(res => {
+				this.$Request.getT('/users/' + userId).then(res => {
 					if (res.code === 0) {
 						this.invitationCode = res.data.invitationCode;
 						this.$queue.setData("image_url", res.data.imgUrl);

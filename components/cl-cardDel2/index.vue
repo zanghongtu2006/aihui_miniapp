@@ -154,7 +154,7 @@
 				console.log("开始查询用户列表")
 				let self = this;
 				let promise;
-				Server.get("/user/getUserList", {
+				Server.get("/nologin/users", {
 					pageIndex: this.pageIndex,
 					pageSize: this.pageSize
 				}, {
@@ -211,8 +211,7 @@
 
 						let userIdLogin =
 							uni.getStorageSync("loginuserinfo") &&
-							uni.getStorageSync("loginuserinfo").user && uni.getStorageSync("loginuserinfo")
-							.user.id;
+							uni.getStorageSync("loginuserinfo").id;
 
 						if (userIdLogin != null) {
 							Server.get("/user/getBalance", {}, {

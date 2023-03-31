@@ -119,7 +119,7 @@
 			getData(){
 				let promise = new Promise((resolve,reject)=>{
 					let dataGroup = []
-					Server.get("/user/getUserList", {
+					Server.get("/nologin/users", {
 						pageIndex: this.pageIndex,
 						pageSize: this.pageSize
 					}, {

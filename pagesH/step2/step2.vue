@@ -103,7 +103,7 @@
 		name: 'Step2',
 		components: {},
 		onLoad(e) {
-			this.loginNum = e.phone;
+			this.username = e.phone;
 			this.code = e.code;
 		},
 		data() {
@@ -129,7 +129,7 @@
 				}],
 				nickName: "",
 				code: "",
-				loginNum: "",
+				username: "",
 				password: "",
 				genderId: 2,
 				stageId: 5,
@@ -242,7 +242,7 @@
 				Server.post("/user/register", {
 					"nickName": this.nickName,
 					"birthday": this.birthday,
-					"loginNum": this.loginNum,
+					"username": this.username,
 					"genderId": this.genderId,
 					"stageId": this.stageId,
 					"password": this.password,
@@ -291,14 +291,34 @@
 					let self = this;
 					this.actiontype = "";
 					//自动登录
-					Server.post("/user/login", {
-						loginNum: self.loginNum,
-						password: self.password
+					Server.get("/oauth/token", {
+						username: self.username,
+						password: self.password,
+						grant_type: 'password',
+						client_id: 'clientA',
+						client_secret: '123456',
+						scope: 'all'
 					}, {
 						success: response => {
 							//保存登录信息
 							try {
-								uni.setStorageSync('loginuserinfo', response.data.data);
+								uni.setStorageSync('loginuserinfo', response.data);
+								Server.get("/users/self", {
+								}, {
+									success: response => {
+										uni.setStorageSync('loginuserinfo', response.data.data);
+									},
+									warnings: response => {
+										this.modelcontent = response;
+										this.modeltitle = "警告";
+										this.modelshow = true;
+									},
+									error: response => {
+										this.modelcontent = response;
+										this.modeltitle = "错误";
+										this.modelshow = true;
+									}
+								})
 								//跳转到首页
 								uni.switchTab({
 									url: '/pages/index/index'

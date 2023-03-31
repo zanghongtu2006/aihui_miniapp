@@ -63,9 +63,9 @@
 				})
 			},
 			getVerifyCode() {
-				Server.post("/Iqnore/SendSms", {
-					phone: this.phone,
-					messageType: "REGISTER"
+				Server.post("/register/captcha", {
+					mobile: this.phone,
+					captchaType: "REGISTER"
 				}, {
 					success: response => {
 						var countDown = setInterval(() => {

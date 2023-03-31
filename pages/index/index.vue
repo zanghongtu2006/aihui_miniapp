@@ -55,7 +55,7 @@
 
 			self.userId =
 				uni.getStorageSync("loginuserinfo") &&
-				uni.getStorageSync("loginuserinfo").user && uni.getStorageSync("loginuserinfo").user.id;
+				uni.getStorageSync("loginuserinfo").id;
 			//登录腾讯im
 			if (self.userId != null) {
 
@@ -72,9 +72,9 @@
 				// error
 			}
 
-			Server.get("/user/getUserList", {
+			Server.get("/nologin/users", {
 				pageIndex: 1,
-				pageSize: 0
+				pageSize: 5
 			}, {
 				success: response => {
 
@@ -160,7 +160,7 @@
 				);
 
 
-				Server.get("/user/getUserInfoCheck/" + userID, {}, {
+				Server.get("/users/getUserInfoCheck/" + userID, {}, {
 					success: response => {
 						let useriminfo = response.data.data;
 						// 设置名字

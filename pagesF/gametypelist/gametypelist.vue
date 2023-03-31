@@ -208,7 +208,7 @@
 				this.myself = options.myself;
 				this.loginUserId =
 					uni.getStorageSync("loginuserinfo") &&
-					uni.getStorageSync("loginuserinfo").user.id;
+					uni.getStorageSync("loginuserinfo").id;
 			}
 
 		},
@@ -260,7 +260,7 @@
 			initdata() {
 				let self = this;
 				Server.get(
-					"/Game/getGameInvitList", {
+					"/games/invites", {
 						condition: "{'address':'" + self.address + "','gameType':'" + self.gameType +
 							"','genderId':'" + self.genderId +
 							"','keyword':'" + self.keyword + "','userId':'" + self.loginUserId + "'}",

@@ -457,7 +457,7 @@
 			initdata() {
 				let self = this;
 				Server.get(
-					"/Game/getGameInvitList", {
+					"/nologin/games/invites", {
 						condition: "{'address':'" + self.address + "','gameType':'" + self.gameType +
 							"','genderId':'" + self.genderId +
 							"','keyword':'" + self.keyword + "'}",

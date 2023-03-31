@@ -155,6 +155,7 @@
 						//保存登录信息
 						try {
 							uni.setStorageSync('loginuserinfo', {});
+							uni.setStorageSync('logintokeninfo', {});
 							//跳转登录页
 							uni.switchTab({
 								url: '/pages/index/index'

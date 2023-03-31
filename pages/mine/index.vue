@@ -205,8 +205,9 @@
 			let self = this;
 			try {
 				const restoken = uni.getStorageSync('loginuserinfo');
-				if (restoken) {
-					self.userId = restoken.user.id;
+				console.log("============mine/index==============="+restoken)
+				if (restoken && restoken.id) {
+					self.userId = restoken.id;
 				}
 			} catch (e) {
 				// error
@@ -233,7 +234,11 @@
 			},
 			initdata() {
 				let self = this;
-				Server.get("/user/getUserInfoCheck/" + self.userId, {}, {
+				let uid = -1;
+				if (self.userId) {
+					let uid = self.userId;
+				}
+				Server.get("/users/getUserInfoCheck/" + self.userId, {}, {
 					success: response => {
 						self.userinfo = response.data.data;
 						self.addpercent();

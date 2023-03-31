@@ -79,7 +79,7 @@
 			try {
 				const restoken = uni.getStorageSync('loginuserinfo');
 				if (restoken) {
-					self.userId = restoken.user.id;
+					self.userId = restoken.id;
 				}
 			} catch (e) {
 				// error
@@ -90,7 +90,7 @@
 		methods: {
 			initdata() {
 				let self = this;
-				Server.get("/user/getUserInfo/" + self.userId, {}, {
+				Server.get("/users/" + self.userId, {}, {
 					success: response => {
 						self.userinfo = response.data.data;
 						self.inittag();

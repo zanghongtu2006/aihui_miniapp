@@ -27,9 +27,9 @@ export default {
 		}
 		let token = ''
 		try {
-			const restoken = uni.getStorageSync('loginuserinfo');
+			const restoken = uni.getStorageSync('logintokeninfo');
 			if (restoken) {
-				token = restoken.token
+				token = restoken.token_type + ' ' + restoken.access_token
 			}
 		} catch (e) {
 			// error
@@ -78,20 +78,14 @@ export default {
 		var [error, res] = await uni.request(headerbody);
 		if (res != undefined) {
 			//如果为505 则跳转到登录页面
-			if (res.data.code == 505) {
-				// uni.reLaunch({
-				// 	url: '/pagesH/login/login'
-				// })
-				//跳转注册界面
+			console.log(res)
+			if (res.statusCode == 401 || res.statusCode == 403 || res.statusCode == 404) {
+				uni.setStorageSync('loginuserinfo', null);
+				uni.setStorageSync('logintokeninfo', null);
 				uni.navigateTo({
 					url: '/pagesH/login/login'
 				});
-                try {
-                	uni.setStorageSync('loginuserinfo', null);
-                } catch (e) {
-                }
-			}
-			if (res.data.code == 200) {
+			} else if (res.data.code == 0 || res.statusCode == 200) {
 				//业务成功
 				events.success(res);
 			} else if (res.data.code == 506 || res.data.code == 507 || res.data.code == 508) {
@@ -109,5 +103,4 @@ export default {
 		//接口调用完成执行 关闭loading
 		uni.hideLoading();
 	}
-	
 }

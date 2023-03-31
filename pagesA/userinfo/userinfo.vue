@@ -253,7 +253,7 @@
 					const restoken = uni.getStorageSync('loginuserinfo');
 					if (restoken) {
 
-						Server.get("/user/getUserInfo/" + restoken.user.id, {}, {
+						Server.get("/users/" + restoken.user.id, {}, {
 							success: response => {
 								self.loginuserinfo = response.data.data;
 							},
@@ -278,8 +278,7 @@
 				this.initdata();
 				this.userlogId =
 					uni.getStorageSync("loginuserinfo") &&
-					uni.getStorageSync("loginuserinfo").user &&
-					uni.getStorageSync("loginuserinfo").user.id;
+					uni.getStorageSync("loginuserinfo").id;
 			}
 		},
 		methods: {
@@ -336,7 +335,7 @@
 			},
 			initdata() {
 				let self = this;
-				Server.get("/user/getUserInfo/" + self.userId, {}, {
+				Server.get("/users/" + self.userId, {}, {
 					success: response => {
 						self.userinfo = response.data.data;
 						self.imgs = [];
@@ -594,7 +593,7 @@
 						const restoken = uni.getStorageSync('loginuserinfo');
 						if (restoken) {
 							uni.navigateTo({
-								url: "/pagesB/HM-chat/HM-chat?userId=" + restoken.user.id + "&nickName=" + this
+								url: "/pagesB/HM-chat/HM-chat?userId=" + restoken.id + "&nickName=" + this
 									.userinfo.nickName +
 									"&sendUserId=" +
 									self.userId,
