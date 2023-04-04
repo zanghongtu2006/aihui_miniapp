@@ -60,6 +60,8 @@ Vue.config.productionTip = false
 App.mpType = 'app'
 Vue.prototype.websocketurl = 'wss://www.wxmblog.com/wss' 
 Vue.prototype.serveraddress = 'https://aihui.zanghongtu.com'
+Vue.prototype.imageaddress = 'https://image.aihuiinfo.com'
+Vue.prototype.serveraddress0 = 'https://www.wxmblog.com/serverapi'
 // Vue.prototype.serveraddress = 'https://www.wxmblog.com/serverapi'
 //app版本
 
@@ -68,8 +70,8 @@ Vue.prototype.appid='wx120a18c636fd8718'
 Vue.prototype.secret='d0f62b74be3cabfd2020cc7619e4d719'
 Vue.prototype.mchid='1614696304'
 
-Vue.prototype.defaultheadportrait="/file/system/defaultheadPortrait.png"
-Vue.prototype.defaulwomantheadportrait="/file/system/defaulwomantheadportrait.png"
+Vue.prototype.defaultheadportrait="/system/defaultheadPortrait.png"
+Vue.prototype.defaulwomantheadportrait="/system/defaulwomantheadportrait.png"
 const app = new Vue({
 	...App
 })

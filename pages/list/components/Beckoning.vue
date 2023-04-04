@@ -223,7 +223,7 @@
 					return;
 				}
 				Server.get(
-					"/user/getPair", {
+					"/users/getPair", {
 						pageIndex: self.frendsPageIndex + 1,
 						pageSize: self.frendspageSize,
 					}, {
@@ -339,7 +339,7 @@
 				if (url.indexOf("https://thirdwx.qlogo.cn") == 0) {
 					return url;
 				} else {
-					return Vuee.prototype.serveraddress + "/" + url;
+					return Vuee.prototype.serveraddress0 + "/" + url;
 				}
 
 			}

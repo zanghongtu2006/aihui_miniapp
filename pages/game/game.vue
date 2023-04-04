@@ -661,25 +661,13 @@
 			},
 			geturl(url) {
 				if (url != null) {
-					if (url.indexOf("https://thirdwx.qlogo.cn") == 0) {
-						return url;
-					} else {
-						return Vue.prototype.serveraddress + "/file/" + url;
-					}
+					return Vue.prototype.imageaddress + "/" + url;
 				}
-
-
 			},
 			geturlimg(url) {
 				if (url != null) {
-					if (url.indexOf("https://thirdwx.qlogo.cn") == 0) {
-						return url;
-					} else {
-						return Vue.prototype.serveraddress + "/" + url;
-					}
+					return Vue.prototype.imageaddress + "/" + url;
 				}
-
-
 			}
 		}
 	}

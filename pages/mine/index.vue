@@ -256,7 +256,7 @@
 				})
 			},
 			geturl(url) {
-				return Vue.prototype.serveraddress + "/" + url;
+				return Vue.prototype.imageaddress + "/" + url;
 			},
 			addpercent() {
 				let self = this;

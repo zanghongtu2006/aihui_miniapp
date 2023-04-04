@@ -197,14 +197,7 @@
 					})
 			},
 			geturl(url) {
-				if(url.indexOf("https://thirdwx.qlogo.cn") ==0)
-				{
-					return url;
-				}else
-				{
-					return Vue.prototype.serveraddress + "/" + url;
-				}
-				
+				return Vue.prototype.imageaddress + "/" + url;
 			},
 			getMoney(userId) {
 				this.$Request.getT('/user/selectUserSumMoney?userId=' + userId).then(res => {

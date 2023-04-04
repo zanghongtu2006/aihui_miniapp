@@ -83,7 +83,7 @@
 			this.referesh();
 			this.userId =
 				uni.getStorageSync("loginuserinfo") &&
-				uni.getStorageSync("loginuserinfo").user.id;
+				uni.getStorageSync("loginuserinfo").id;
 			this.connectSocketInit();
 		},
 		onReachBottom() {
@@ -172,7 +172,7 @@
 			},
 			getSelfByAttitude() {
 				Server.get(
-					"/user/getPair", {
+					"/users/getPair", {
 						pageIndex: 1,
 						pageSize: 9,
 					}, {

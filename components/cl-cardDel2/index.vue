@@ -175,7 +175,7 @@
 								
 								if (self.currid!=response.data.data.rows[i].id) {
 									dataGroup.push({
-										src: Vue.prototype.serveraddress + "/" + self
+										src: Vue.prototype.imageaddress + "/" + self
 											.getString(
 												response.data.data.rows[i].firstSelfiePath),
 										sex: response.data.data.rows[i].genderId - 2,

@@ -131,7 +131,7 @@
 							} else {
 								this.empty = false;
 								for (var i = 1; i < this.cardcount; i++) {
-									var image = Vue.prototype.serveraddress + "/" + response.data.data.rows[i].firstSelfiePath;
+									var image = Vue.prototype.imageaddress + "/" + response.data.data.rows[i].firstSelfiePath;
 									dataGroup.push({
 										src: image,
 										sex: response.data.data.rows[i].genderId - 2,
