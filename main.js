@@ -58,7 +58,7 @@ Vue.use(uView);
 
 Vue.config.productionTip = false
 App.mpType = 'app'
-Vue.prototype.websocketurl = 'wss://www.wxmblog.com/wss' 
+Vue.prototype.websocketurl = 'wss://aihui.zanghongtu.com/wss' 
 Vue.prototype.serveraddress = 'https://aihui.zanghongtu.com'
 Vue.prototype.imageaddress = 'https://image.aihuiinfo.com'
 Vue.prototype.serveraddress0 = 'https://www.wxmblog.com/serverapi'

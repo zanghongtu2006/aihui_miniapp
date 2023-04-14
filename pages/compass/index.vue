@@ -159,7 +159,7 @@
 					if (list.length > 0) {
 						if (that.activeTab == 0) {
 							//增加 加载左边的列表
-							Server.get("/blog/getBlogList", {
+							Server.get("/blogs", {
 								pageIndex: that.startNum + 1,
 								pageSize: that.pageSize
 							}, {
@@ -200,7 +200,7 @@
 					} else {
 
 						//第一次加载 左边
-						Server.get("/blog/getBlogList", {
+						Server.get("/blogs", {
 							pageIndex: that.startNum + 1,
 							pageSize: that.pageSize
 						}, {
@@ -243,10 +243,9 @@
 					if (listright.length > 0) {
 						if (that.activeTab == 1) {
 							//加载右边列表
-							Server.get("/blog/getBlogList", {
+							Server.get("/blogs/friends", {
 								pageIndex: that.startNumRight + 1,
-								pageSize: that.pageSize,
-								condition: "{'pairUser':'true'}"
+								pageSize: that.pageSize
 							}, {
 								success: response => {
 									if (response.data.data.rows.length > 0) {
@@ -285,10 +284,9 @@
 					} else {
 
 
-						Server.get("/blog/getBlogList", {
+						Server.get("/blogs/friends", {
 							pageIndex: that.startNumRight + 1,
-							pageSize: that.pageSize,
-							condition: "{'pairUser':'true'}"
+							pageSize: that.pageSize
 						}, {
 							success: response => {
 								if (response.data.data.rows.length > 0) {
@@ -337,10 +335,9 @@
 				that.activeTab = index;
 				if(index==1)
 				{
-					Server.get("/blog/getBlogList", {
+					Server.get("/blogs/myself", {
 						pageIndex: 1,
 						pageSize: 0,
-						condition: "{'mySelf':'true'}"
 					}, {
 						success: response => {
 							

@@ -23,11 +23,11 @@
 					<view class="cardBox"
 						:animation="animationData[index]"
 						:style="{transform:index<number?`rotate(${rotate*index}deg) scale(${ 1-(1-scale.x)*index },${ 1-(1-scale.y)*index }) skew(${skew.x*index}deg, ${skew.y*index}deg) translate(${translate.x*index}px, ${translate.y*index}px)`:`rotate(${rotate*(number-1)}deg) scale(${ 1-(1-scale.x)*(number-1) },${ 1-(1-scale.y)*(number-1) }) skew(${skew.x*(number-1)}deg, ${skew.y*(number-1)}deg) translate(${translate.x*(number-1)}px, ${translate.y*(number-1)}px)`,opacity:index<number?`${ 1-(1-opacity)*index }`:`${ 1-(1-opacity)*(number-1) }`}"
-						
 					>
 						<card-box :src="item.src" :number="item.number" :name="item.name" 
 							:sex="item.sex" :constellation="item.constellation" 
-							:address="item.address" :old="item.old" ref="cardBox">
+							:address="item.address" :old="item.old" ref="cardBox"
+						>
 						</card-box>
 					</view>
 				</movable-view>
@@ -131,10 +131,10 @@
 							} else {
 								this.empty = false;
 								for (var i = 1; i < this.cardcount; i++) {
-									var image = Vue.prototype.imageaddress + "/" + response.data.data.rows[i].firstSelfiePath;
+									var image = Vue.prototype.serveraddress0 + "/" + response.data.data.rows[i].firstSelfiePath;
 									dataGroup.push({
 										src: image,
-										sex: response.data.data.rows[i].genderId - 2,
+										sex: response.data.data.rows[i].genderId,
 										address:this.getString(response.data.data.rows[i]
 												.address).replace("市", "") + (response.data.data.rows[i]
 												.distanceStr != null && response.data.data
@@ -146,7 +146,8 @@
 										name:response.data.data.rows[i].nickName,
 										constellation:response.data.data.rows[i].xinzuo,
 										number:10,
-										old:response.data.data.rows[i].age
+										old:response.data.data.rows[i].age,
+										id:response.data.data.rows[i].id
 									})
 								}
 								this.dataList = [...this.dataList,...dataGroup]
@@ -194,16 +195,17 @@
 				}
 			},
 			tapCard(item){
-				console.log(item,"点击")
+				uni.navigateTo({
+					url: '/pagesA/userinfo/userinfo?userId=' + item.id
+				})
 			},
 			getString(data) {
 				if (data == null || data == undefined) {
 					return "";
 				}
 				return data;
-			}
+			},
 		}
-		
 	}
 </script>
 

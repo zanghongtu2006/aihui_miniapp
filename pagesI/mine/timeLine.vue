@@ -98,10 +98,9 @@
 				//左边
 				if (list.length > 0) {
 					//增加 加载左边的列表
-					Server.get("/blog/getBlogList", {
+					Server.get("/blogs/myself", {
 						pageIndex: that.startNum + 1,
 						pageSize: that.pageSize,
-						condition: "{'mySelf':'true'}"
 					}, {
 						success: response => {
 							if (response.data.data.rows.length > 0) {
@@ -135,10 +134,9 @@
 				} else {
 
 					//第一次加载 左边
-					Server.get("/blog/getBlogList", {
+					Server.get("/blogs/myself", {
 						pageIndex: that.startNum + 1,
 						pageSize: that.pageSize,
-						condition: "{'mySelf':'true'}"
 					}, {
 						success: response => {
 							if (response.data.data.rows.length > 0) {
@@ -192,7 +190,7 @@
 			confirm() {
 				if (that.operator == "deleteblog") {
 					//删除动态
-					Server.delete("/blog/deleteBlog/" + that.deleteblogid, {}, {
+					Server.delete("/blogs/" + that.deleteblogid, {}, {
 						success: response => {
 							that.startNum = 0;
 							that.cardList = [];

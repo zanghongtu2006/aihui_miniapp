@@ -20,7 +20,7 @@
 						<image class="heart-icon" :src="require('@/static/icon/locationicon.png')" />
 						<text>{{item.distanceStr}}</text>
 					</view>
-					<view v-if="item.genderId==2" class="sex-group" style="background-color: #0FBCF9;">
+					<view v-if="item.genderId==0" class="sex-group" style="background-color: #0FBCF9;">
 						<image class="sex" :src="require('@/static/icon/male.png')" />
 					</view>
 					<view v-else class="sex-group" style="background-color: #ff5500;">

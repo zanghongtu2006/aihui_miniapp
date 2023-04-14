@@ -56,7 +56,7 @@
 					<view class="middle">
 						<text class="nickname">{{userinfo.nickName}}</text>
 						<view style="display: flex">
-							<view v-if="userinfo.genderId==3" class="extra">
+							<view v-if="userinfo.genderId==1" class="extra">
 								<image class="sex" :src="require('@/static/icon/female_pink.png')" />
 								<text>{{userinfo.age}}·{{userinfo.xinzuo}}·{{userinfo.stageName}}</text>
 							</view>
@@ -99,7 +99,7 @@
 						<image class="section-icon" :src="require('@/static/icon/contact.png')" />
 						<view class="title-wrapper">
 							<text class="title">联系方式</text>
-							<!-- <text class="subtitle">(相互喜欢后可查看联系方式)</text> -->
+							<text class="subtitle">(相互喜欢后可查看联系方式)</text>
 						</view>
 					</view>
 					<view class="contact-method content">
@@ -454,7 +454,7 @@
 			},
 			matching(attitude, useridb) {
 				if (this.iqnorevip || (this.loginuserinfo && this.loginuserinfo.vipLevel && (this.loginuserinfo.vipLevel[1]
-						.status || this.loginuserinfo.genderId == 3))) {
+						.status || this.loginuserinfo.genderId == 1))) {
 					Server.post("/user/matching", {
 						attitude: attitude,
 						userIdB: useridb

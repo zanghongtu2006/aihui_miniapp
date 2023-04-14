@@ -48,7 +48,7 @@
 					<view class="middle">
 						<text @click="gotouser(userinfo.id)" class="nickname">{{userinfo.nickName}}</text>
 						<view style="display: flex">
-							<view v-if="userinfo.genderId==3" class="extra">
+							<view v-if="userinfo.genderId==1" class="extra">
 								<image class="sex" :src="require('@/static/icon/female_pink.png')" />
 								<text>{{userinfo.age}}·{{userinfo.xinzuo}}·{{userinfo.stageName}}</text>
 							</view>

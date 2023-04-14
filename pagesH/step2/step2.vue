@@ -131,7 +131,7 @@
 				code: "",
 				username: "",
 				password: "",
-				genderId: 2,
+				genderId: 0,
 				stageId: 5,
 				truePassWord: "",
 				birthday: getDate({
@@ -205,7 +205,7 @@
 			}) {
 				this.sex = value;
 				this.genderId = this.sexList[value].value;
-				if (this.genderId == 2) {
+				if (this.genderId == 0) {
 					if (this.uploadcount == 0) {
 						this.headPortrait = Vue.prototype.defaultheadportrait;
 					}

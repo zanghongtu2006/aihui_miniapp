@@ -1,61 +1,5 @@
 <template>
 	<scroll-view>
-		<!-- <swiper class="swiper-top" :circular="true">
-      <swiper-item class="swiper-item-top">
-        <image
-          class="img"
-          src="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1170509971,3861269768&fm=26&gp=0.jpg"
-        />
-      </swiper-item>
-      <swiper-item class="swiper-item-top">
-        <image
-          class="img"
-          src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1816366408,1729518576&fm=26&gp=0.jpg"
-        />
-      </swiper-item>
-    </swiper> -->
-
-		<!-- <view class="filter-list">
-      <view class="wrapper">
-        <uni-collapse class="my-uni-collapse" accordion="true">
-          <uni-collapse-item
-            title="全部联系人"
-            titleClass="my-collapse-item-title"
-            :showAnimation="true"
-          >
-            <text class="count" slot="icon">11</text>
-            <view class="filter-item">
-              <image
-                class="count-icon"
-                :src="require('@/static/icon/friend.png')"
-              />
-              <view class="right">
-                <text>全部好友</text>
-              </view>
-            </view>
-            <view class="filter-item">
-              <image
-                class="count-icon"
-                :src="require('@/static/icon/beckoning.png')"
-              />
-              <view class="right">
-                <text>相互心动</text>
-              </view>
-            </view>
-            <view class="filter-item">
-              <image
-                class="count-icon"
-                :src="require('@/static/icon/star.png')"
-              />
-              <view class="right">
-                <text>星标好友</text>
-              </view>
-            </view>
-          </uni-collapse-item>
-        </uni-collapse>
-      </view>
-    </view> -->
-
 		<view class="message-list">
 			<template v-if="messagelist && messagelist.length > 0">
 				<view v-for="item in messagelist" :key="item.id"
@@ -147,6 +91,7 @@
 			change() {},
 			toChat(userId, nickName, sendUserId) {
 				let self = this;
+				console.log(userId + " " + nickName + " " + sendUserId);
 				/* 	if (sendUserId != 1) {
 						Server.get("/users/" + sendUserId, {}, {
 							success: response => {
@@ -186,7 +131,7 @@
 				});
 			},
 			geturl(url) {
-				return Vue.prototype.imageaddress + "/" + url;
+				return Vue.prototype.serveraddress0 + "/" + url;
 			}
 		},
 	};

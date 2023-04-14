@@ -178,7 +178,7 @@
 										src: Vue.prototype.imageaddress + "/" + self
 											.getString(
 												response.data.data.rows[i].firstSelfiePath),
-										sex: response.data.data.rows[i].genderId - 2,
+										sex: response.data.data.rows[i].genderId,
 										address: self.getString(response.data.data.rows[i]
 												.address)
 											.replace("市", "") + (response.data.data.rows[i]

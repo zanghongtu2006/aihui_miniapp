@@ -124,7 +124,7 @@
 					self.pageSize = 12;
 				}
 				Server.get(
-					"/chat/messageList", {
+					"/messages", {
 						pageIndex: self.pageIndex + 1,
 						pageSize: self.pageSize,
 					}, {

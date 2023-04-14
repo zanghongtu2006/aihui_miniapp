@@ -9,7 +9,8 @@
         "modules" : {
             "Maps" : {},
             "Payment" : {},
-            "Contacts" : {}
+            "Contacts" : {},
+            "OAuth" : {}
         },
         "distribute" : {
             "android" : {
@@ -61,7 +62,13 @@
                         "appkey_android" : "9532421b540563b583d40a74591e1d5a"
                     }
                 },
-                "payment" : {}
+                "payment" : {},
+                "oauth" : {
+                    "weixin" : {
+                        "appid" : "wxd54fdf7d2a4a6616",
+                        "UniversalLinks" : ""
+                    }
+                }
             },
             "splashscreen" : {
                 "iosStyle" : "common",

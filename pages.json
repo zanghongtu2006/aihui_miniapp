@@ -133,6 +133,16 @@
 			}]
 		},
 		{
+			"root": "pagesB",
+			"pages": [{
+					"path": "HM-chat/HM-chat",
+					"style": {
+						"enablePullDownRefresh": false
+					}
+				}
+			]
+		},
+		{
 			"root": "pagesF",
 			"pages": [{
 					"path": "gametypelist/gametypelist",
