@@ -14,6 +14,7 @@
 				<input class="login_line_input" type="password" v-model="password" name="" id="" placeholder="请输入密码" />
 			</view>
 			<view class="login_btn" @tap="login">登录</view>
+			<view class="wechat_login_btn" @tap="getUserInfo">微信用户一键登录</view>
 			<view style="float: left;margin-left: 30upx;" @tap="jumpToResetpwd" class="uni-title">
 				忘记密码？
 			</view>
@@ -23,7 +24,6 @@
 			<view style="float: right;margin-right: 30upx;" @tap="toregister" class="uni-title">
 				新用户注册
 			</view>
-
 		</view>
 		<!-- 弹出层 -->
 		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#ff5500'}"></u-modal>
@@ -53,6 +53,7 @@
 	} from 'vue-property-decorator'
 
 	import Server from "@/common/serverutil.js";
+	import { loginByWeixin } from "@/utils/common.js";
 	import { genTestUserSig } from '../../common/TXIM/GenerateTestUserSig.js';
 	export default {
 		name: 'Login',
@@ -99,6 +100,57 @@
 				//跳转到首页
 				uni.switchTab({
 					url: '/pages/index/index'
+				});
+			},
+			getUserInfo() {
+				uni.showLoading({
+					title: '加载中',
+				});
+				uni.getUserProfile({
+				    desc: '登录后可同步数据',
+					success: async (obj) => {
+						console.log('obj', obj);
+						// 调用 action ，请求登录接口
+						// await this.login(obj);
+						uni.login({
+							provider: 'weixin',
+							success: (res) => {
+								console.log('res-login', res);
+								this.code = res.code;
+								console.log('code', res.code);
+								if (res.errMsg == 'login:ok') {
+									uni.request({
+										url:
+											'https://aihui.zanghongtu.com/wxh6/wx/user/' +
+								            'wx55822xxxx75e422' +
+								            '/login/',
+								            data: {
+								                code: this.code,
+								            },
+								    })
+								    .then((res) => {
+								        //获取到 openid 和 session_k后，自己的逻辑
+								        console.log('授权登录', res[1].data);
+								        console.log(res[1].data.openid);
+								        console.log(res[1].data.session_key);
+								        // DoSomeThing.................
+								    });
+								    console.log('res', res);
+								}
+							},
+						});
+					},
+					fail: () => {
+						uni.showToast({
+							title: '授权已取消',
+						    icon: 'error',
+						    mask: true,
+						});
+					},
+					complete: () => {
+					    // 隐藏loading
+					    uni.hideLoading();
+					},
 				});
 			},
 			login() {
@@ -278,6 +330,17 @@
 		height: 80upx;
 		text-align: center;
 		background: #ff5500;
+		color: #ffffff;
+		margin: 100upx auto;
+		border-radius: 10upx;
+		line-height: 80upx;
+	}
+	
+	.wechat_login_btn {
+		width: 94%;
+		height: 80upx;
+		text-align: center;
+		background: #00aa00;
 		color: #ffffff;
 		margin: 100upx auto;
 		border-radius: 10upx;
