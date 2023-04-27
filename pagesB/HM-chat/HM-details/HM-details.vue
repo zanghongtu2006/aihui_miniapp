@@ -8,7 +8,7 @@
 				{{money}}
 			</view>
 			<view class="face" :style="{'border-radius':radius}">
-				<image src="/static/img/im/face/face_11.jpg"></image>
+				<image src=getUrl("/static/img/im/face/face_11.jpg")></image>
 			</view>
 			<view class="username">
 				{{username}}的红包
@@ -57,14 +57,14 @@
 				receivedMoney:5.43,
 				SumMoney:10,
 				receivedList:[
-					{username:"大黑哥", face:"/static/img/im/face/face_6.jpg",time:"2019-04-12 12:54:12",money:0.01,islucky:false},
-					{username:"路人甲", face:"/static/img/im/face/face_5.jpg",time:"2019-04-12 12:54:13",money:1.82,islucky:true},
-					{username:"高级黑", face:"/static/img/im/face/face_4.jpg",time:"2019-04-12 12:55:10",money:0.23,islucky:false},
-					{username:"低级黑", face:"/static/img/im/face/face_3.jpg",time:"2019-04-12 12:56:10",money:0.56,islucky:false},
-					{username:"大明哥", face:"/static/img/im/face/face_2.jpg",time:"2019-04-12 12:56:15",money:0.96,islucky:false},
-					{username:"小姐姐", face:"/static/img/im/face/face_1.jpg",time:"2019-04-12 12:56:17",money:1.02,islucky:false},
-					{username:"大哥哥", face:"/static/img/im/face/face_7.jpg",time:"2019-04-12 12:56:19",money:0.05,islucky:false},
-					{username:"抢红包", face:"/static/img/im/face/face_8.jpg",time:"2019-04-12 12:56:22",money:0.78,islucky:false}
+					{username:"大黑哥", face:getUrl("/static/img/im/face/face_6.jpg"),time:"2019-04-12 12:54:12",money:0.01,islucky:false},
+					{username:"路人甲", face:getUrl("/static/img/im/face/face_5.jpg"),time:"2019-04-12 12:54:13",money:1.82,islucky:true},
+					{username:"高级黑", face:getUrl("/static/img/im/face/face_4.jpg"),time:"2019-04-12 12:55:10",money:0.23,islucky:false},
+					{username:"低级黑", face:getUrl("/static/img/im/face/face_3.jpg"),time:"2019-04-12 12:56:10",money:0.56,islucky:false},
+					{username:"大明哥", face:getUrl("/static/img/im/face/face_2.jpg"),time:"2019-04-12 12:56:15",money:0.96,islucky:false},
+					{username:"小姐姐", face:getUrl("/static/img/im/face/face_1.jpg"),time:"2019-04-12 12:56:17",money:1.02,islucky:false},
+					{username:"大哥哥", face:getUrl("/static/img/im/face/face_7.jpg"),time:"2019-04-12 12:56:19",money:0.05,islucky:false},
+					{username:"抢红包", face:getUrl("/static/img/im/face/face_8.jpg"),time:"2019-04-12 12:56:22",money:0.78,islucky:false}
 				],
 				//动画效果
 				radius:'100% 100% 0 0'

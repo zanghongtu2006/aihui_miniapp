@@ -726,7 +726,7 @@
 								userinfo: {
 									uid: 0,
 									username: "大黑哥",
-									face: "/static/img/face.jpg"
+									face: geturl("/static/img/face.jpg")
 								},
 								content: {
 									text: "为什么温度会相差那么大？"
@@ -742,7 +742,7 @@
 								userinfo: {
 									uid: 1,
 									username: "售后客服008",
-									face: "/static/img/im/face/face_2.jpg"
+									face: getUrl("/static/img/im/face/face_2.jpg")
 								},
 								content: {
 									text: "这个是有偏差的，两个温度相差十几二十度是很正常的，如果相差五十度，那即是质量问题了。"
@@ -758,10 +758,10 @@
 								userinfo: {
 									uid: 1,
 									username: "售后客服008",
-									face: "/static/img/im/face/face_2.jpg"
+									face: getUrl("/static/img/im/face/face_2.jpg")
 								},
 								content: {
-									url: "/static/voice/1.mp3",
+									url: getUrl("/static/voice/1.mp3"),
 									length: "00:06"
 								}
 							}
@@ -775,10 +775,10 @@
 								userinfo: {
 									uid: 0,
 									username: "大黑哥",
-									face: "/static/img/face.jpg"
+									face: geturl("/static/img/face.jpg")
 								},
 								content: {
-									url: "/static/voice/2.mp3",
+									url: getUrl("/static/voice/2.mp3"),
 									length: "00:06"
 								}
 							}
@@ -829,7 +829,7 @@
 							userinfo: {
 								uid: 0,
 								username: "大黑哥",
-								face: "/static/img/face.jpg"
+								face: geturl("/static/img/face.jpg")
 							},
 							content: {
 								text: "为什么温度会相差那么大？"
@@ -845,7 +845,7 @@
 							userinfo: {
 								uid: 1,
 								username: "售后客服008",
-								face: "/static/img/im/face/face_2.jpg"
+								face: getUrl("/static/img/im/face/face_2.jpg")
 							},
 							content: {
 								text: "这个是有偏差的，两个温度相差十几二十度是很正常的，如果相差五十度，那即是质量问题了。"
@@ -878,10 +878,10 @@
 							userinfo: {
 								uid: 0,
 								username: "大黑哥",
-								face: "/static/img/face.jpg"
+								face: geturl("/static/img/face.jpg")
 							},
 							content: {
-								url: "/static/voice/2.mp3",
+								url: getUrl("/static/voice/2.mp3"),
 								length: "00:06"
 							}
 						}
@@ -895,10 +895,10 @@
 							userinfo: {
 								uid: 0,
 								username: "大黑哥",
-								face: "/static/img/face.jpg"
+								face: geturl("/static/img/face.jpg")
 							},
 							content: {
-								url: "/static/img/p10.jpg",
+								url: geturl("/static/img/p10.jpg"),
 								w: 200,
 								h: 200
 							}
@@ -913,10 +913,10 @@
 							userinfo: {
 								uid: 1,
 								username: "售后客服008",
-								face: "/static/img/im/face/face_2.jpg"
+								face: getUrl("/static/img/im/face/face_2.jpg")
 							},
 							content: {
-								url: "/static/img/q.jpg",
+								url: getUrl("/static/img/q.jpg"),
 								w: 1920,
 								h: 1080
 							}
@@ -1136,7 +1136,7 @@
 						userinfo: {
 							uid: 0,
 							username: "大黑哥",
-							face: "/static/img/face.jpg"
+							face: geturl("/static/img/face.jpg")
 						},
 						content: content
 					}
@@ -1352,6 +1352,9 @@
 			switchVoice() {
 				this.hideDrawer();
 				this.isVoice = this.isVoice ? false : true;
+			},
+			geturl(url) {
+				return Vue.prototype.imageaddress + "/" + url;
 			},
 			discard() {
 				return;
