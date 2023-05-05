@@ -106,12 +106,10 @@
 				uni.showLoading({
 					title: '加载中',
 				});
-				uni.getUserProfile({
-				    desc: '登录后可同步数据',
-					success: async (obj) => {
-						console.log('obj', obj);
-						// 调用 action ，请求登录接口
-						// await this.login(obj);
+				uni.getUserInfo({
+					provider: 'weixin',
+					success: (res0) => {
+						console.log('getUserInfo', res0);
 						uni.login({
 							provider: 'weixin',
 							success: (res) => {
@@ -120,12 +118,17 @@
 								console.log('code', res.code);
 								if (res.errMsg == 'login:ok') {
 									uni.request({
+										method: 'POST',
 										url:
-											'https://aihui.zanghongtu.com/wxh6/wx/user/' +
-								            'wx55822xxxx75e422' +
-								            '/login/',
+											Vue.prototype.serveraddress + '/login/wx',
 								            data: {
 								                code: this.code,
+												nickName: res0.userInfo.nickName,
+												headPortrait: res0.userInfo.avatarUrl,
+												city: res0.userInfo.city,
+												contry: res0.userInfo.contry,
+												province: res0.userInfo.province,
+												genderId: res0.userInfo.gender
 								            },
 								    })
 								    .then((res) => {
@@ -140,18 +143,56 @@
 							},
 						});
 					},
-					fail: () => {
-						uni.showToast({
-							title: '授权已取消',
-						    icon: 'error',
-						    mask: true,
-						});
-					},
 					complete: () => {
-					    // 隐藏loading
-					    uni.hideLoading();
+						// 隐藏loading
+						uni.hideLoading();
 					},
 				});
+				// uni.getUserProfile({
+				//     desc: '登录后可同步数据',
+				// 	success: async (obj) => {
+				// 		console.log('obj', obj);
+				// 		// 调用 action ，请求登录接口
+				// 		// await this.login(obj);
+				// 		uni.login({
+				// 			provider: 'weixin',
+				// 			success: (res) => {
+				// 				console.log('res-login', res);
+				// 				this.code = res.code;
+				// 				console.log('code', res.code);
+				// 				if (res.errMsg == 'login:ok') {
+				// 					uni.request({
+				// 						method: 'POST',
+				// 						url:
+				// 							'https://aihui.zanghongtu.com/login/wx',
+				// 				            data: {
+				// 				                code: this.code,
+				// 				            },
+				// 				    })
+				// 				    .then((res) => {
+				// 				        //获取到 openid 和 session_k后，自己的逻辑
+				// 				        console.log('授权登录', res[1].data);
+				// 				        console.log(res[1].data.openid);
+				// 				        console.log(res[1].data.session_key);
+				// 				        // DoSomeThing.................
+				// 				    });
+				// 				    console.log('res', res);
+				// 				}
+				// 			},
+				// 		});
+				// 	},
+				// 	fail: () => {
+				// 		uni.showToast({
+				// 			title: '授权已取消',
+				// 		    icon: 'error',
+				// 		    mask: true,
+				// 		});
+				// 	},
+				// 	complete: () => {
+				// 	    // 隐藏loading
+				// 	    uni.hideLoading();
+				// 	},
+				// });
 			},
 			login() {
 				let self = this;
