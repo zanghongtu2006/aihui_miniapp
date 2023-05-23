@@ -223,6 +223,16 @@
 			]
 		},
 		{
+			"root": "pagesJ",
+			"pages": [{
+					"path": "personal/index",
+					"style": {
+						
+					}
+				}
+			]
+		},
+		{
 			"root": "pagesK",
 			"pages": [{
 					"path": "PrivacySet/PrivacySet",

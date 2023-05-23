@@ -238,7 +238,7 @@
 				if (self.userId) {
 					let uid = self.userId;
 				}
-				Server.get("/users/getUserInfoCheck/" + self.userId, {}, {
+				Server.get("/users/getUserInfoCheck", {}, {
 					success: response => {
 						self.userinfo = response.data.data;
 						self.addpercent();

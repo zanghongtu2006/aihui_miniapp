@@ -36,7 +36,7 @@
 					<image class="action-icon" src="/static/arrow-right.png"></image>
 				</view>
 			</view>
-			<view class="action-box boxMargin">
+			<!-- <view class="action-box boxMargin">
 				<view class="action-item" @click="jumpToaddvip">
 					<text class="action-text">会员中心</text>
 					<image class="action-icon" src="/static/arrow-right.png"></image>
@@ -45,7 +45,7 @@
 					<text class="action-text">分享赚佣金</text>
 					<image class="action-icon" src="/static/arrow-right.png"></image>
 				</view>
-			</view>
+			</view> -->
 
 			<!-- <view class="action-box boxMargin">
 

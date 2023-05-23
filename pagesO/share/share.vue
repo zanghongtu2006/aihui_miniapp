@@ -164,7 +164,7 @@
 					uni.getStorageSync("loginuserinfo") &&
 					uni.getStorageSync("loginuserinfo").id;
 					
-					Server.get("/users/getUserInfoCheck/" +userId, {}, {
+					Server.get("/users/getUserInfoCheck", {}, {
 						success: response => {
 							self.userinfo = response.data.data;
 						},

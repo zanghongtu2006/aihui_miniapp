@@ -160,7 +160,7 @@
 				);
 
 
-				Server.get("/users/getUserInfoCheck/" + userID, {}, {
+				Server.get("/users/getUserInfoCheck", {}, {
 					success: response => {
 						let useriminfo = response.data.data;
 						// 设置名字
