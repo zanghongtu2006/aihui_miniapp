@@ -68,11 +68,11 @@
 				gendervalue: null,
 				genderText: "不限",
 				list: [{
-						value: '2',
+						value: 0,
 						label: '男'
 					},
 					{
-						value: '3',
+						value: 1,
 						label: '女'
 					},
 					{
@@ -97,11 +97,11 @@
 				stagevalue: null,
 				stageText: "不限",
 				liststage: [{
-						value: '5',
+						value: 5,
 						label: '学生'
 					},
 					{
-						value: '6',
+						value: 6,
 						label: '工作'
 					},
 					{
@@ -117,13 +117,13 @@
 			onShow() {
 				console.log('mine', getApp().globalData)
 				let self = this;
-				Server.get("/user/getPreferenceSet", {}, {
+				Server.get("/users/getPreferenceSet", {}, {
 					success: response => {
 						console.log(response)
-						if (response.data.data.gender != null && response.data.data.gender != undefined && response.data.data.gender !=
+						if (response.data.data.genderId != null && response.data.data.genderId != undefined && response.data.data.genderId !=
 							'') {
-							self.gendervalue = response.data.data.gender;
-							self.genderText = response.data.data.gender == 2 ? "男" : "女";
+							self.gendervalue = response.data.data.genderId;
+							self.genderText = response.data.data.genderId == 0 ? "男" : "女";
 							for (var i = 0; i < self.list.length; i++) {
 								if (self.list[i].value == self.gendervalue) {
 									self.defaultgender = [i];
@@ -131,7 +131,7 @@
 								}
 							}
 						} else {
-							self.defaultgender = [2];
+							self.defaultgender = [0];
 						}
 						if (response.data.data.stage != null && response.data.data.stage != undefined && response.data.data.stage !=
 							'') {
@@ -169,8 +169,8 @@
 			},
 			login() {
 				let self = this;
-				Server.post("/user/addPreferenceSet", {
-					gender: this.gendervalue,
+				Server.post("/users/addPreferenceSet", {
+					genderId: this.gendervalue,
 					maxAge: this.rangeValues[1],
 					minAge: this.rangeValues[0],
 					stage: this.stagevalue,

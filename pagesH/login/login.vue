@@ -134,8 +134,11 @@
 								    .then((res) => {
 								        //获取到 openid 和 session_k后，自己的逻辑
 								        console.log('授权登录', res[1].data);
-								        console.log(res[1].data.openid);
-								        console.log(res[1].data.session_key);
+										uni.setStorageSync('logintokeninfo', res[1].data.data);
+										//跳转到首页
+										uni.switchTab({
+											url: '/pages/index/index'
+										});
 								        // DoSomeThing.................
 								    });
 								    console.log('res', res);

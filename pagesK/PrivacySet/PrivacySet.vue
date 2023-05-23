@@ -43,7 +43,7 @@
 				modelcontent: "",
 				checked: false,
 				perferenceset: {
-					gender: null,
+					genderId: null,
 					stage: null,
 					maxAge: null,
 					minAge: null
@@ -53,12 +53,12 @@
 		methods: {
 			onShow() {
 				let self = this;
-				Server.get("/user/getPreferenceSet", {}, {
+				Server.get("/users/getPreferenceSet", {}, {
 					success: response => {
 						console.log(response)
-						if (response.data.data.gender != null && response.data.data.gender != undefined && response.data.data.gender !=
+						if (response.data.data.genderId != null && response.data.data.genderId != undefined && response.data.data.genderId !=
 							'') {
-							self.perferenceset.gender = response.data.data.gender;
+							self.perferenceset.genderId = response.data.data.genderId;
 						}
 						if (response.data.data.stage != null && response.data.data.stage != undefined && response.data.data.stage !=
 							'') {
@@ -88,8 +88,8 @@
 			},
 			login() {
 				let self = this;
-				Server.post("/user/addPreferenceSet", {
-					gender: self.perferenceset.gender,
+				Server.post("/users/addPreferenceSet", {
+					genderId: self.perferenceset.genderId,
 					maxAge: self.perferenceset.maxAge,
 					minAge: self.perferenceset.minAge,
 					stage: self.perferenceset.stage,

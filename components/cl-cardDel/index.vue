@@ -119,35 +119,34 @@
 			getData(){
 				let promise = new Promise((resolve,reject)=>{
 					let dataGroup = []
-					Server.get("/nologin/users", {
+					Server.get("/nologin/users/randomUsers", {
 						pageIndex: this.pageIndex,
 						pageSize: this.pageSize
 					}, {
 						success: response => {
-							console.log("获取到数据:" + response.data.data.rows.length)
-							this.cardcount = response.data.data.rows.length;
+							console.log("获取到数据:" + response.data.data.length)
+							this.cardcount = response.data.data.length;
 							if (this.cardcount == 0) {
 								this.empty = true;
 							} else {
 								this.empty = false;
 								for (var i = 1; i < this.cardcount; i++) {
-									var image = Vue.prototype.serveraddress0 + "/" + response.data.data.rows[i].firstSelfiePath;
+									var image = Vue.prototype.serveraddress0 + "/" + response.data.data[i].firstSelfiePath;
 									dataGroup.push({
 										src: image,
-										sex: response.data.data.rows[i].genderId,
-										address:this.getString(response.data.data.rows[i]
-												.address).replace("市", "") + (response.data.data.rows[i]
-												.distanceStr != null && response.data.data
-												.rows[i]
+										sex: response.data.data[i].genderId,
+										address:this.getString(response.data.data[i]
+												.address).replace("市", "") + (response.data.data[i]
+												.distanceStr != null && response.data.data[i]
 												.distanceStr != '' ? "(" + self.getString(
-													response.data.data.rows[i].distanceStr) +
+													response.data.data[i].distanceStr) +
 												")" :
 												""),
-										name:response.data.data.rows[i].nickName,
-										constellation:response.data.data.rows[i].xinzuo,
+										name:response.data.data[i].nickName,
+										constellation:response.data.data[i].xinzuo,
 										number:10,
-										old:response.data.data.rows[i].age,
-										id:response.data.data.rows[i].id
+										old:response.data.data[i].age,
+										id:response.data.data[i].id
 									})
 								}
 								this.dataList = [...this.dataList,...dataGroup]

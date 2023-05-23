@@ -99,7 +99,7 @@
 				}
 
 				Server.get(
-					"/user/getSelfByAttitude", {
+					"/users/myStar", {
 						attitude: true,
 						pageIndex: self.attitudePageIndex + 1,
 						pageSize: self.attitudePageSize,
@@ -160,7 +160,7 @@
 					return;
 				}
 				Server.get(
-					"/user/getLikeMe", {
+					"/users/starMe", {
 						pageIndex: self.likeMePageIndex + 1,
 						pageSize: self.likeMepageSize,
 					}, {
