@@ -197,7 +197,10 @@
 					})
 			},
 			geturl(url) {
-				return Vue.prototype.imageaddress + "/" + url;
+				if (url !=null && !url.startsWith("http")) {
+					return Vue.prototype.imageaddress + "/" + url;
+				}
+				return url;
 			},
 			getMoney(userId) {
 				this.$Request.getT('/user/selectUserSumMoney?userId=' + userId).then(res => {

@@ -76,6 +76,12 @@
 			if(e.scrollTop>100){return;}
 			let radiusTmp = 100 - e.scrollTop;
 			this.radius = radiusTmp+'% '+radiusTmp+'% 0 0';
+		},
+		geturl(url) {
+			if (url !=null && !url.startsWith("http")) {
+				return Vue.prototype.imageaddress + "/" + url;
+			}
+			return url;
 		}
 	}
 </script>

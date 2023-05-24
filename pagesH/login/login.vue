@@ -135,6 +135,21 @@
 								        //获取到 openid 和 session_k后，自己的逻辑
 								        console.log('授权登录', res[1].data);
 										uni.setStorageSync('logintokeninfo', res[1].data.data);
+										Server.get("/users/self", {}, {
+											success: response => {
+												uni.setStorageSync('loginuserinfo', response.data.data);
+											}, 
+											warnings: response => {
+												this.modelcontent = response;
+												this.modeltitle = "警告";
+												this.modelshow = true;
+											},
+											error: response => {
+												this.modelcontent = response;
+												this.modeltitle = "错误";
+												this.modelshow = true;
+											}
+										})
 										//跳转到首页
 										uni.switchTab({
 											url: '/pages/index/index'

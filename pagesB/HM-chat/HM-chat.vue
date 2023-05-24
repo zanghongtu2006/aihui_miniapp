@@ -209,7 +209,15 @@
 		Vue,
 		Component
 	} from 'vue-property-decorator'
-	export default {
+
+  function geturl(url) {
+    if (url !=null && !url.startsWith("http")) {
+      return Vue.prototype.imageaddress + "/" + url;
+    }
+    return url;
+  }
+
+  export default {
 		data() {
 			return {
 				//文字消息
@@ -664,6 +672,12 @@
 			// });
 		},
 		methods: {
+      geturl(url) {
+				if (url !=null && !url.startsWith("http")) {
+					return Vue.prototype.imageaddress + "/" + url;
+				}
+				return url;
+			},
 			// 接受消息(筛选处理)
 			screenMsg(msg) {
 				//从长连接处转发给这个方法，进行筛选处理
@@ -742,7 +756,7 @@
 								userinfo: {
 									uid: 1,
 									username: "售后客服008",
-									face: getUrl("/static/img/im/face/face_2.jpg")
+									face: geturl("/static/img/im/face/face_2.jpg")
 								},
 								content: {
 									text: "这个是有偏差的，两个温度相差十几二十度是很正常的，如果相差五十度，那即是质量问题了。"
@@ -758,10 +772,10 @@
 								userinfo: {
 									uid: 1,
 									username: "售后客服008",
-									face: getUrl("/static/img/im/face/face_2.jpg")
+									face: geturl("/static/img/im/face/face_2.jpg")
 								},
 								content: {
-									url: getUrl("/static/voice/1.mp3"),
+									url: geturl("/static/voice/1.mp3"),
 									length: "00:06"
 								}
 							}
@@ -778,7 +792,7 @@
 									face: geturl("/static/img/face.jpg")
 								},
 								content: {
-									url: getUrl("/static/voice/2.mp3"),
+									url: geturl("/static/voice/2.mp3"),
 									length: "00:06"
 								}
 							}
@@ -845,7 +859,7 @@
 							userinfo: {
 								uid: 1,
 								username: "售后客服008",
-								face: getUrl("/static/img/im/face/face_2.jpg")
+								face: geturl("/static/img/im/face/face_2.jpg")
 							},
 							content: {
 								text: "这个是有偏差的，两个温度相差十几二十度是很正常的，如果相差五十度，那即是质量问题了。"
@@ -881,7 +895,7 @@
 								face: geturl("/static/img/face.jpg")
 							},
 							content: {
-								url: getUrl("/static/voice/2.mp3"),
+								url: geturl("/static/voice/2.mp3"),
 								length: "00:06"
 							}
 						}
@@ -913,10 +927,10 @@
 							userinfo: {
 								uid: 1,
 								username: "售后客服008",
-								face: getUrl("/static/img/im/face/face_2.jpg")
+								face: geturl("/static/img/im/face/face_2.jpg")
 							},
 							content: {
-								url: getUrl("/static/img/q.jpg"),
+								url: geturl("/static/img/q.jpg"),
 								w: 1920,
 								h: 1080
 							}
@@ -1119,7 +1133,6 @@
 				console.log("-------------" + replacedStr);
 				return '<div style="display: flex;align-items: center;word-wrap:break-word;">' + replacedStr + '</div>';
 			},
-
 			// 发送消息
 			sendMsg(content, type) {
 				//实际应用中，此处应该提交长连接，模板仅做本地处理。
@@ -1187,59 +1200,6 @@
 			addSystemTextMsg(msg) {
 				this.msgList.push(msg);
 			},
-			// 添加系统红包消息到列表
-			// addSystemRedEnvelopeMsg(msg) {
-			// 	this.msgList.push(msg);
-			// },
-			// 打开红包
-			// openRedEnvelope(msg, index) {
-			// 	let rid = msg.content.rid;
-			// 	uni.showLoading({
-			// 		title: '加载中...'
-			// 	});
-			// 	console.log("index: " + index);
-			// 	//模拟请求服务器效果
-			// 	setTimeout(() => {
-			// 		//加载数据
-			// 		if (rid == 0) {
-			// 			this.redenvelopeData = {
-			// 				rid: 0, //红包ID
-			// 				from: "大黑哥",
-			// 				face: "/static/img/im/face/face.jpg",
-			// 				blessing: "恭喜发财，大吉大利",
-			// 				money: "已领完"
-			// 			}
-			// 		} else {
-			// 			this.redenvelopeData = {
-			// 				rid: 1, //红包ID
-			// 				from: "售后客服008",
-			// 				face: "/static/img/im/face/face_2.jpg",
-			// 				blessing: "恭喜发财",
-			// 				money: "0.01"
-			// 			}
-			// 			if (!msg.content.isReceived) {
-			// 				// {type:"system",msg:{id:8,type:"redEnvelope",content:{text:"你领取了售后客服008的红包"}}},
-			// 				this.sendSystemMsg({
-			// 					text: "你领取了" + (msg.userinfo.uid == this.myuid ? "自己" : msg.userinfo
-			// 						.username) + "的红包"
-			// 				}, 'redEnvelope');
-			// 				console.log("this.msgList[index]: " + JSON.stringify(this.msgList[index]));
-			// 				this.msgList[index].msg.content.isReceived = true;
-			// 			}
-			// 		}
-			// 		uni.hideLoading();
-			// 		this.windowsState = 'show';
-
-			// 	}, 200)
-
-			// },
-			// 关闭红包弹窗
-			// closeRedEnvelope() {
-			// 	this.windowsState = 'hide';
-			// 	setTimeout(() => {
-			// 		this.windowsState = '';
-			// 	}, 200)
-			// },
 			sendSystemMsg(content, type) {
 				let lastid = this.msgList[this.msgList.length - 1].msg.id;
 				lastid++;
@@ -1352,9 +1312,6 @@
 			switchVoice() {
 				this.hideDrawer();
 				this.isVoice = this.isVoice ? false : true;
-			},
-			geturl(url) {
-				return Vue.prototype.imageaddress + "/" + url;
 			},
 			discard() {
 				return;

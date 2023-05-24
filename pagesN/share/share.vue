@@ -119,7 +119,10 @@
 		},
 		methods: {
 			geturl(url) {
-				return Vue.prototype.imageaddress + "/" + url;
+				if (url !=null && !url.startsWith("http")) {
+					return Vue.prototype.imageaddress + "/" + url;
+				}
+				return url;
 			},
 			chage() {
 				let self = this;

@@ -115,7 +115,7 @@
 			postcontent() {
 				let self = this;
 				//发布动态
-				Server.post("/blog/addblog", {
+				Server.post("/blogs", {
 					"address": self.address,
 					"labelList": [],
 					"fileList": self.imguploadList,

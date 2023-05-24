@@ -217,7 +217,7 @@
 				canceltext: '取消',
 				showcancelbutton: true,
 				actionoperation: "",
-				userId: "",
+				userId: 0,
 				userinfo: {},
 				percent: 0,
 				imgs: [],
@@ -289,25 +289,13 @@
 			},
 			seeweixin() {
 				let self = this;
-				if (self.userinfo.onlySeeVip != null && self.userinfo.onlySeeVip == true && self.userId != 1) {
-					//系统设置了仅会员可以聊天需要
-					self.actionoperation = "addvip1";
-					self.showcancelbutton = true //修改取消按钮
-					self.content = "只有超级会员才能查看微信";
-					self.title = "权限不足";
-					self.confirmtext = "立刻升级";
-					self.canceltext = "再看看";
-					self.show = true;
+				if (self.userinfo.matchingSuccess != null && self.userinfo.matchingSuccess == true) {
+					self.showweixin = true;
 				} else {
-					if (self.userinfo.matchingSuccess != null && self.userinfo.matchingSuccess == true) {
-						self.showweixin = true;
-					} else {
-						self.showcancelbutton = false
-						self.content = "相互喜欢才能查看对方联系方式";
-						self.title = "提示";
-						self.show = true;
-					}
-
+					self.showcancelbutton = false
+					self.content = "相互喜欢才能查看对方联系方式";
+					self.title = "提示";
+					self.show = true;
 				}
 			},
 			seeqq() {
@@ -453,78 +441,52 @@
 				});
 			},
 			matching(attitude, useridb) {
-				if (this.iqnorevip || (this.loginuserinfo && this.loginuserinfo.vipLevel && (this.loginuserinfo.vipLevel[1]
-						.status || this.loginuserinfo.genderId == 1))) {
-					Server.post("/user/matching", {
+					Server.post("/users/matching", {
 						attitude: attitude,
-						userIdB: useridb
+						starUserId: useridb
 					}, {
-						success: response => {
-							console.log("入库结束")
-							if (response.data.data.result == true) {
-								this.showcancelbutton = true;
-								this.content = "你们相互喜欢了,是否立刻开启聊天";
-								this.title = "太赞了"
-								this.confirmtext = "开始聊天";
-								this.canceltext = "再看看";
-								this.show = true;
-								this.actionoperation = "tochat";
-								this.chatuseridA = response.data.data.userIdA;
-								this.chatuseridB = response.data.data.userIdB;
-
-							} else {
-								this.showcancelbutton = false
-								if (attitude) {
-									this.content = "你喜欢了对方，对方将收到你的喜欢，相互喜欢后即可开启聊天";
-								} else {
-									this.content = "你不喜欢了对方，对方将无法与你开启聊天并无法查看你的联系方式";
-								}
-								this.title = "提示";
-								this.show = true;
-							}
-							this.initdata();
-						},
-						service: response => {
-							if (response.data.code == 506 || response.data.code == 507) {
-								if (response.data.code == 506) {
-									this.viplevel = 1;
-								}
-								this.actionoperation = "addvip";
-								this.showcancelbutton = true //修改取消按钮
-								this.content = response.data.msg;
-								this.title = "权限不足";
-								this.confirmtext = "立刻升级";
-								this.canceltext = "再看看";
-								this.show = true;
-							} else {
-								this.showcancelbutton = false //修改取消按钮
-								this.content = response.data.msg;
-								this.show = true;
-							}
-						},
-						warnings: response => {
-							this.showcancelbutton = false
-							this.content = response;
-							this.title = "警告";
+					success: response => {
+						console.log("入库结束")
+						if (response.data.data.result == true) {
+							this.showcancelbutton = true;
+							this.content = "你们相互喜欢了,是否立刻开启聊天";
+							this.title = "太赞了"
+							this.confirmtext = "开始聊天";
+							this.canceltext = "再看看";
 							this.show = true;
-						},
-						error: response => {
+							this.actionoperation = "tochat";
+							this.chatuseridA = response.data.data.userId;
+							this.chatuseridB = response.data.data.starUserId;
+						} else {
 							this.showcancelbutton = false
-							this.content = response;
-							this.title = "错误";
+							if (attitude) {
+								this.content = "你喜欢了对方，对方将收到你的喜欢，相互喜欢后即可开启聊天";
+							} else {
+								this.content = "你不喜欢了对方，对方将无法与你开启聊天并无法查看你的联系方式";
+							}
+							this.title = "提示";
 							this.show = true;
 						}
-					})
-				} else {
-					this.actionoperation = "addvip";
-					this.showcancelbutton = true //修改取消按钮
-					this.content = "升级为至尊会员可不限场景喜欢对方";
-					this.title = "权限不足";
-					this.confirmtext = "立刻升级";
-					this.canceltext = "再看看";
-					this.show = true;
-				}
-
+						this.initdata();
+					},
+					service: response => {
+						this.showcancelbutton = false //修改取消按钮
+						this.content = response.data.msg;
+						this.show = true;
+					},
+					warnings: response => {
+						this.showcancelbutton = false
+						this.content = response;
+						this.title = "警告";
+						this.show = true;
+					},
+					error: response => {
+						this.showcancelbutton = false
+						this.content = response;
+						this.title = "错误";
+						this.show = true;
+					}
+				})
 			},
 			confirm() {
 
@@ -567,35 +529,21 @@
 				console.log("点击了取消")
 			},
 			toChat() {
-
 				let self = this;
-
-				if (self.userinfo.onlySeeVip != null && self.userinfo.onlySeeVip == true && self.userId != 1) {
-					//系统设置了仅会员可以聊天需要
-					self.actionoperation = "addvip1";
-					self.showcancelbutton = true //修改取消按钮
-					self.content = "只有超级会员才能和对方聊天";
-					self.title = "权限不足";
-					self.confirmtext = "立刻升级";
-					self.canceltext = "再看看";
-					self.show = true;
-				} else {
-					try {
-						const restoken = uni.getStorageSync('loginuserinfo');
-						if (restoken) {
-							uni.navigateTo({
-								url: "/pagesB/HM-chat/HM-chat?userId=" + restoken.id + "&nickName=" + this
-									.userinfo.nickName +
-									"&sendUserId=" +
-									self.userId,
-							});
-						}
-					} catch (e) {
-						// error
+				try {
+					const restoken = uni.getStorageSync('loginuserinfo');
+					console.log("tochat------------------"+restoken)
+					if (restoken) {
+						uni.navigateTo({
+							url: "/pagesB/HM-chat/HM-chat?userId=" + restoken.id + "&nickName=" + this
+								.userinfo.nickName +
+								"&sendUserId=" +
+								self.userId,
+						});
 					}
+				} catch (e) {
+					// error
 				}
-
-
 			},
 			lahei() {
 				this.actionoperation = "lahei";

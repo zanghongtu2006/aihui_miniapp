@@ -45,7 +45,7 @@
 			</view>
 			<view v-else class="list-item" @click="clickHandler(item.id)" v-for="(item, index) in gameList"
 				:key="index">
-				<image class="img" :src="geturlimg(item.firstSelfiePath)" mode="aspectFill" />
+				<image class="img" :src="geturl(item.firstSelfiePath)" mode="aspectFill" />
 				<view class="star-count">
 					<image class="heart-icon" :src="require('@/static/icon/locationicon.png')" />
 					<text>{{item.distanceStr}}</text>
@@ -53,7 +53,7 @@
 
 				<text class="text"> {{item.address}}</text>
 				<view class="main_info_avatar">
-					<u-avatar :src="geturlimg(item.headPortrait)" size="mini" mode="circle" :showSex="true"
+					<u-avatar :src="geturl(item.headPortrait)" size="mini" mode="circle" :showSex="true"
 						:sex-icon="item.gender" :sex-bg-color="item.sexbgColor"></u-avatar>
 				</view>
 
@@ -493,10 +493,10 @@
 				});
 			},
 			geturl(url) {
-				return Vue.prototype.imageaddress + "/" + url;
-			},
-			geturlimg(url) {
-				return Vue.prototype.imageaddress + "/" + url;
+				if (url !=null && !url.startsWith("http")) {
+					return Vue.prototype.imageaddress + "/" + url;
+				}
+				return url;
 			}
 		}
 	}
