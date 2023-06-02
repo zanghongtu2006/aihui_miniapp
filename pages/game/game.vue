@@ -265,7 +265,7 @@
 
 <script>
 	import Server from "@/common/serverutil.js";
-	//	import permision from "@/common/permission.js"
+	// import permision from "@/common/permission.js"
 	import Vue from 'vue'
 	export default {
 		data() {
@@ -440,11 +440,11 @@
 						label: "不限"
 					},
 					{
-						value: "2",
+						value: "0",
 						label: "男"
 					},
 					{
-						value: "3",
+						value: "1",
 						label: "女"
 					}
 				];
@@ -458,9 +458,12 @@
 				let self = this;
 				Server.get(
 					"/nologin/games/invites", {
-						condition: "{'address':'" + self.address + "','gameType':'" + self.gameType +
-							"','genderId':'" + self.genderId +
-							"','keyword':'" + self.keyword + "'}",
+						// condition: "{'address':'" + self.address + "','gameType':'" + self.gameType +
+						// 	"','genderId':'" + self.genderId +
+						// 	"','keyword':'" + self.keyword + "'}",
+						address: self.address,
+						gameType: self.gameType,
+						genderId: self.genderId,
 						pageIndex: self.pageIndex,
 						pageSize: self.pageSize
 					}, {
@@ -514,11 +517,11 @@
 			},
 			saveaddress(isinitdata) {
 				let self = this;
-				//获取位置信息
-				console.log("判断用户是否授权位置信息")
 
 				let isloaction = permision.checkSystemEnableLocation();
-
+				//获取位置信息
+				console.log("判断用户是否授权位置信息" + isloaction)
+		
 
 				if (isloaction == false) {
 					//接口调用完成执行 关闭loading
@@ -660,7 +663,7 @@
 				});
 			},
 			geturl(url) {
-				if (url !=null && !url.startsWith("http")) {
+				if (url != null && !url.startsWith("http")) {
 					return Vue.prototype.imageaddress + "/" + url;
 				}
 				return url;

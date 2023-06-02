@@ -243,11 +243,11 @@
 						label: "不限"
 					},
 					{
-						value: "2",
+						value: "0",
 						label: "男"
 					},
 					{
-						value: "3",
+						value: "1",
 						label: "女"
 					}
 				];
@@ -260,10 +260,13 @@
 			initdata() {
 				let self = this;
 				Server.get(
-					"/games/invites", {
-						condition: "{'address':'" + self.address + "','gameType':'" + self.gameType +
-							"','genderId':'" + self.genderId +
-							"','keyword':'" + self.keyword + "','userId':'" + self.loginUserId + "'}",
+					"/nologin/games/invites", {
+						// condition: "{'address':'" + self.address + "','gameType':'" + self.gameType +
+						// 	"','genderId':'" + self.genderId +
+						// 	"','keyword':'" + self.keyword + "','userId':'" + self.loginUserId + "'}",
+						address: self.address,
+						gameType: self.gameType,
+						genderId: self.genderId,
 						pageIndex: self.pageIndex,
 						pageSize: self.pageSize
 					}, {
@@ -317,10 +320,10 @@
 			},
 			saveaddress(isinitdata) {
 				let self = this;
-				//获取位置信息
-				console.log("判断用户是否授权位置信息")
 
 				let isloaction = permision.checkSystemEnableLocation();
+				//获取位置信息
+				console.log("判断用户是否授权位置信息" + isloaction)
 
 
 				if (isloaction == false) {
@@ -359,7 +362,7 @@
 								"address": self.addresstemp
 							}, {
 								success: response => {
-									console.log("修改用户位置完成")
+									console.log("修改用户位置完成" + self.addresstemp)
 									if (isinitdata) {
 										self.address = self.addresstemp;
 										self.initdata();
@@ -493,7 +496,7 @@
 				});
 			},
 			geturl(url) {
-				if (url !=null && !url.startsWith("http")) {
+				if (url != null && !url.startsWith("http")) {
 					return Vue.prototype.imageaddress + "/" + url;
 				}
 				return url;

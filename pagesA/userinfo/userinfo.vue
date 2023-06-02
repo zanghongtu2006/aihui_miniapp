@@ -356,7 +356,10 @@
 				})
 			},
 			geturl(url) {
-				return Vue.prototype.serveraddress0 + "/" + url;
+				if (url !=null && !url.startsWith("http")) {
+					return Vue.prototype.imageaddress + "/" + url;
+				}
+				return url;
 			},
 			addpercent() {
 				let self = this;

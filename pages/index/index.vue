@@ -5,6 +5,19 @@
 		<u-modal v-model="show" :title="title" :content="content" width="70%" :show-cancel-button="showcancelbutton"
 			:confirm-style="{color: '#ff5500'}" :confirm-text="confirmtext" :cancel-text="canceltext"
 			@confirm="confirm()" @cancel="cancel()"></u-modal>
+		
+		<!-- <view class="control">
+			<view class="left" @click="matching(false,userId)">
+				<image class="img" :src="require('@/static/icon/dislike.png')" />
+			</view>
+		
+			<view class="right" @click="toChat()">
+				<image class="img" :src="require('@/static/icon/liaotian.png')" />
+			</view>
+			<view class="right" @click="matching(true,userId)">
+				<image class="img" :src="require('@/static/icon/like.png')" />
+			</view>
+		</view> -->
 	</view>
 </template>
 
@@ -41,6 +54,7 @@
 				showcancelbutton: true,
 				actionoperation: "",
 				amapPlugin: null,
+				loginuserinfo: {},
 				key: '87b470386b2e45e0d16bb3599a7b6831',
 				userId: ''
 			}
@@ -193,7 +207,9 @@
 			saveaddress() {
 				let self = this;
 				//获取位置信息
-				console.log("判断用户是否授权位置信息")
+        let isloaction = permision.checkSystemEnableLocation();
+        //获取位置信息
+        console.log("判断用户是否授权位置信息" + isloaction)
 				console.log("获取定位")
 				/* uni.getLocation({
 				type: 'gcj02',
@@ -403,5 +419,33 @@
 		//     height: 50upx;
 		//   }
 		// }
+	}
+	
+	.control {
+		position: fixed;
+		bottom: 100upx;
+		left: 100upx;
+		right: 100upx;
+		z-index: 999;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	
+		.left,
+		.right {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: #ffffff;
+			box-shadow: 0 0 20upx #ecf0f1;
+			height: 100upx;
+			width: 100upx;
+			border-radius: 50%;
+		}
+	
+		.img {
+			height: 70upx;
+			width: 70upx;
+		}
 	}
 </style>

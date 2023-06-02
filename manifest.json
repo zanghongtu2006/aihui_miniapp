@@ -145,9 +145,7 @@
                 "desc" : "我们需要获取定位信息用于向您推荐附近的人"
             }
         },
-        "requiredPrivateInfos": [
-            "getLocation"
-        ]
+        "requiredPrivateInfos" : [ "getLocation" ]
     },
     "mp-alipay" : {
         "usingComponents" : true

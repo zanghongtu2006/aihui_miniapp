@@ -59,7 +59,7 @@ Vue.use(uView);
 Vue.config.productionTip = false
 App.mpType = 'app'
 Vue.prototype.websocketurl = 'wss://aihui.zanghongtu.com/wss' 
-Vue.prototype.serveraddress = 'https://aihui.zanghongtu.com'
+Vue.prototype.serveraddress = 'https://aihui.zanghongtu.com/api'
 Vue.prototype.imageaddress = 'https://image.aihuiinfo.com'
 Vue.prototype.serveraddress0 = 'https://www.wxmblog.com/serverapi'
 // Vue.prototype.serveraddress = 'https://www.wxmblog.com/serverapi'

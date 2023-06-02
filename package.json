@@ -1,30 +1,23 @@
 {
-    "name": "app",
-    "version": "1.0.4",
-    "description": "一个仿探探的交友app全套程序,在探探基础上增加了很多新的特色功能，如组局，朋友圈等，功能包含有卡片左右划， 即时通讯 聊天 社区， 个人中心，编辑资料，已对接微信公众号支付，内容合法性，人脸检测等",
-    "main": "main.js",
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
-    },
-    "author": "",
-    "license": "ISC",
-    "dependencies": {
-        "tim-wx-sdk": "^2.17.0",
-        "jweixin-module": "^1.6.0"
-    },
-    "id": "wangxiaomu-jiaoyou",
-    "displayName": " 仿探探 即时通讯 聊天 社交 陌生人交友app小程序 前端模板 三端通用",
+    "id": "lj-share",
+    "name": "微信小程序全局分享功能 ",
+    "displayName": "微信小程序全局分享功能 ",
+    "version": "1.0",
+    "description": "实现微信小程序的全局 转发给好友/分享到朋友圈 的功能。主要使用 Vue.js 的 全局混入 概念",
     "keywords": [
-        "交友",
-        "社交",
-        "即使通讯",
-        "聊天",
-        "社区"
+        "小程序",
+        "组件",
+        "前端组件",
+        "分享",
+        "朋友圈"
     ],
     "dcloudext": {
         "category": [
-            "uni-app前端模板",
-            "uni-app前端项目模板"
+            "前端组件",
+            "通用组件"
         ]
+    },
+    "dependencies": {
+        "crypto-js": "^4.1.1"
     }
 }

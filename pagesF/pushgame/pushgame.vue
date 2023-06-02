@@ -130,11 +130,14 @@
 
 				}
 			},
+      radioGroupChange(e) {
+			  console.log("radioGroupChange==========" + e)
+      },
 			pushcontent()
 			{
 				let self = this;
 				//发布动态
-				Server.post("/Game/addGameInvit", {
+				Server.post("/games/invites", {
 					"content": self.content,
 					"gameType":self.gametype
 				}, {

@@ -53,9 +53,21 @@
 				</card-box>
 			</view>
 			
-
 		</view>
 		<!-- #endif -->
+		
+		<view class="control">
+			<view class="left" @click="tapLoathe(false,userId)">
+				<image class="img" :src="require('@/static/icon/dislike.png')" />
+			</view>
+		
+			<view class="right" @click="toChat()">
+				<image class="img" :src="require('@/static/icon/liaotian.png')" />
+			</view>
+			<view class="right" @click="tapLove(true,userId)">
+				<image class="img" :src="require('@/static/icon/like.png')" />
+			</view>
+		</view>
 		<!-- <view class="love" >
 			<view class="iconfont icon-xinaixin" :style="{fontSize:'40rpx'}"  @tap="tapLove"></view>
 		</view>
@@ -279,5 +291,32 @@
 		align-items: center;
 		z-index: 999;
 		color: #FFFFFF;
+	}
+	.control {
+		position: fixed;
+		bottom: 100upx;
+		left: 100upx;
+		right: 100upx;
+		z-index: 999;
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	
+		.left,
+		.right {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: #ffffff;
+			box-shadow: 0 0 20upx #ecf0f1;
+			height: 100upx;
+			width: 100upx;
+			border-radius: 50%;
+		}
+	
+		.img {
+			height: 70upx;
+			width: 70upx;
+		}
 	}
 </style>

@@ -143,6 +143,18 @@
 			]
 		},
 		{
+			"root": "pagesE",
+			"pages": [{
+					"path": "gamedetail/gamedetail",
+					"style": {
+					
+						"enablePullDownRefresh": false
+					}
+
+				}
+			]
+		},
+		{
 			"root": "pagesF",
 			"pages": [{
 					"path": "gametypelist/gametypelist",
