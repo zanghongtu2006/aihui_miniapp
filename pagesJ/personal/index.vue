@@ -4,7 +4,7 @@
 			:back-text-style="{ color: '#fff' }" back-text="返回" :background="{backgroundColor: '#ff5500'}"> </u-navbar>
 		<view class="page" :style="{ minHeight: mineBoxHeight }">
 			<view class="header">
-				<!-- <image class="bg" :src="geturl(userinfo.headPortrait)" /> -->
+				<image class="bg" :src="geturl(userInfo.headPortrait)" />
 				<view class="content">
 					<view class="avatar-wrapper" @tap="ChooseImage">
 						<image class="img" :src="geturl(userInfo.headPortrait)" />
@@ -24,6 +24,17 @@
 							<u-select v-model="showgender" :default-value="defaultgender" mode="single-column"
 								:list="list" @confirm="confirmgender" confirm-color="#ff5500"></u-select>
 						</view>
+						<view class="login_line">
+							<view class="login_line_title">年龄：</view>
+							<input type="text" maxlength="12" placeholder="请输入年龄" v-model="userInfo.age" />
+						</view>
+						<view class="login_line">
+							<view class="login_line_title">星座：</view>
+							<view style="width: 80%;" @tap="showxingzuoselect">{{xingzuoText}}</view>
+							<u-select v-model="showxingzuo" :default-value="defaultxingzuo" mode="single-column"
+								:list="xingzuolist" @confirm="confirmxingzuo" confirm-color="#ff5500"></u-select>
+						</view>
+						
 					</view>
 				</view>
 				<view class="login_btn" @tap="updateUserInfo">保存</view>
@@ -41,18 +52,15 @@
 	import Server from "@/common/serverutil.js";
 	import COS from '@/common/cos-wx-sdk-v5-min.js';
 
-	var Bucket = 'images-1303232721';
-	var Region = 'ap-shanghai';
+	function randomUUID() {
+		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+		const r = Math.random() * 16 | 0
+		const v = c === 'x' ? r : (r & 0x3 | 0x8)
+		return v.toString(16)
+		})
+	}
 
-  function randomUUID() {
-      return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-        const r = Math.random() * 16 | 0
-        const v = c === 'x' ? r : (r & 0x3 | 0x8)
-        return v.toString(16)
-      })
-  }
-
-  export default {
+	export default {
 		name: 'EditSelfInfo',
 		components: {
 
@@ -75,8 +83,59 @@
 				modelcontent: "",
 				checked: false,
 				showgender: false,
+				showxingzuo: false,
 				gendervalue: null,
-				genderText: "不限",
+				genderText: "男",
+				xingzuovalue: null,
+				xingzuoText: "白羊座",
+				xingzuolist: [{
+						value: 0,
+						label: '白羊座',
+					},
+					{
+						value: 1,
+						label: '金牛座'
+					},
+					{
+						value: 2,
+						label: '双子座'
+					},
+					{
+						value: 3,
+						label: '巨蟹座'
+					},
+					{
+						value: 4,
+						label: '狮子座'
+					},
+					{
+						value: 5,
+						label: '处女座'
+					},
+					{
+						value: 6,
+						label: '天秤座'
+					},
+					{
+						value: 7,
+						label: '天蝎座'
+					},
+					{
+						value: 8,
+						label: '射手座'
+					},
+					{
+						value: 9,
+						label: '魔羯座'
+					},
+					{
+						value: 10,
+						label: '水瓶座'
+					},
+					{
+						value: 11,
+						label: '双鱼座'
+				}],
 				list: [{
 						value: 0,
 						label: '男'
@@ -84,17 +143,14 @@
 					{
 						value: 1,
 						label: '女'
-					},
-					{
-						value: null,
-						label: '不限'
-					}
-				],
+				}],
 				defaultgender: [0],
+				defaultxingzuo: [0],
 				userInfo: {
 					nickName: null,
 					genderId: null,
-					headPortrait: ''
+					headPortrait: '',
+					xingzuo: null,
 				},
 				imgList: [],
 				cosKey: {
@@ -112,7 +168,7 @@
 		methods: {
 			// 选择图片
 			ChooseImage() {
-        let self = this;
+				let self = this;
 				var cos = new COS({
 					// getAuthorization 必选参数
 					SimpleUploadMethod: 'putObject',
@@ -122,11 +178,6 @@
 						if (restoken) {
 							token = restoken.token_type + ' ' + restoken.access_token
 						}
-						// 初始化时不会调用，只有调用 cos 方法（例如 cos.putObject）时才会进入
-						// 异步获取临时密钥
-						// 服务端 JS 和 PHP 例子：https://github.com/tencentyun/cos-js-sdk-v5/blob/master/server/
-						// 服务端其他语言参考 COS STS SDK ：https://github.com/tencentyun/qcloud-cos-sts-sdk
-						// STS 详细文档指引看：https://cloud.tencent.com/document/product/436/14048
 						wx.request({
 							url: Vue.prototype.serveraddress + '/cloud/tencent/cos/tmpkey',
 							data: {},
@@ -139,11 +190,9 @@
 								callback({
 									TmpSecretId: credentials.tmpSecretId,
 									TmpSecretKey: credentials.tmpSecretKey,
-									// v1.2.0之前版本的 SDK 使用 XCosSecurityToken 而不是 SecurityToken
 									SecurityToken: credentials.sessionToken,
-									// 建议返回服务器时间作为签名的开始时间，避免用户浏览器本地时间偏差过大导致签名错误
-									StartTime: credentials.startTime, // 时间戳，单位秒，如：1580000000
-									ExpiredTime: credentials.expiredTime, // 时间戳，单位秒，如：1580000900
+									StartTime: credentials.startTime, 
+									ExpiredTime: credentials.expiredTime, 
 								});
 							}
 						});
@@ -153,8 +202,8 @@
 				wx.chooseImage({
 					count: 1,
 					success: function(res) {
-            let file = res.tempFiles[0];
-            let strs = file.path.split('.');
+						let file = res.tempFiles[0];
+						let strs = file.path.split('.');
 						let uuid = randomUUID();
 						let fileName = uuid + '.' + strs[strs.length -1];
 						let fullFileName = fileName.charAt(0) + "/" + fileName.substr(0,2) + "/" + fileName.substr(0, 8) + "/" + fileName;
@@ -165,12 +214,12 @@
 							filePath: file.path,
 							success: function(res) {
 								cos.putObject({
-									Bucket: 'images-1303232721',
-									Region: 'ap-shanghai',
+									Bucket: self.config.Bucket,
+									Region: self.config.Region,
 									Key: fullFileName,
 									Body: res.data, // Body里传入的是文件内容
 								}, function(err, data) {
-                  self.userInfo.headPortrait = fullFileName;
+									self.userInfo.headPortrait = fullFileName;
 								});
 							},
 							fail: function(err) {
@@ -192,9 +241,15 @@
 						console.log(self.userInfo)
 						for (var i = 0; i < self.list.length; i++) {
 							if (self.list[i].value == self.userInfo.genderId) {
-								console.log(self.list[i].value)
 								self.gendervalue = [i];
 								self.genderText = self.list[i].label
+								break;
+							}
+						}
+						for (var i = 0; i < self.list.length; i++) {
+							if (self.xingzuolist[i].value == self.userInfo.xingzuo) {
+								self.xingzuovalue = [i];
+								self.xingzuoText = self.xingzuolist[i].label
 								break;
 							}
 						}
@@ -228,7 +283,17 @@
 						break;
 					}
 				}
-
+			},
+			confirmxingzuo(e) {
+				this.xingzuoText = e[0].label;
+				this.xingzuovalue = e[0].value;
+				for (var i = 0; i < this.xingzuolist.length; i++) {
+					if (this.xingzuolist[i].value == this.xingzuovalue) {
+						this.userInfo.xingzuo = i;
+						this.userInfo.xingzuoText = this.xingzuolist[i].label;
+						break;
+					}
+				}
 			},
 			objectURLToBlob(blodurl) {
 				uni.showLoading({
@@ -256,17 +321,12 @@
 			showselect() {
 				this.showgender = true;
 			},
+			showxingzuoselect() {
+				this.showxingzuo = true;
+			},
 			updateUserInfo() {
 				let self = this;
-				Server.post("/users/update", {
-					nickName: self.userInfo.nickName,
-					genderId: self.userInfo.genderId,
-          headPortrait: self.userInfo.headPortrait
-					// maxAge: self.perferenceset.maxAge,
-					// minAge: self.perferenceset.minAge,
-					// stage: self.perferenceset.stage,
-					// seeRange: !self.checked
-				}, {
+				Server.post("/users/update", self.userInfo, {
 					success: response => {
 						this.modelcontent = "保存成功";
 						this.modeltitle = "提示";

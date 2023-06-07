@@ -58,11 +58,11 @@
 						<view style="display: flex">
 							<view v-if="userinfo.genderId==1" class="extra">
 								<image class="sex" :src="require('@/static/icon/female_pink.png')" />
-								<text>{{userinfo.age}}·{{userinfo.xinzuo}}·{{userinfo.stageName}}</text>
+								<text>{{userinfo.age}}·{{userinfo.xingzuoText}}</text>
 							</view>
 							<view v-else class="extraman">
 								<image class="sex" :src="require('@/static/icon/man_icon.png')" />
-								<text>{{userinfo.age}}·{{userinfo.xinzuo}}·{{userinfo.stageName}}</text>
+								<text>{{userinfo.age}}·{{userinfo.xingzuoText}}</text>
 							</view>
 						</view>
 					</view>
@@ -300,25 +300,13 @@
 			},
 			seeqq() {
 				let self = this;
-				if (self.userinfo.onlySeeVip != null && self.userinfo.onlySeeVip == true && self.userId != 1) {
-					//系统设置了仅会员可以聊天需要
-					self.actionoperation = "addvip1";
-					self.showcancelbutton = true //修改取消按钮
-					self.content = "只有超级会员才能查看QQ";
-					self.title = "权限不足";
-					self.confirmtext = "立刻升级";
-					self.canceltext = "再看看";
-					self.show = true;
+				if (self.userinfo.matchingSuccess != null && self.userinfo.matchingSuccess == true) {
+					self.showqq = true;
 				} else {
-					if (self.userinfo.matchingSuccess != null && self.userinfo.matchingSuccess == true) {
-						self.showqq = true;
-					} else {
-						self.showcancelbutton = false
-						self.content = "相互喜欢才能查看对方联系方式";
-						self.title = "提示";
-						self.show = true;
-					}
-
+					self.showcancelbutton = false
+					self.content = "相互喜欢才能查看对方联系方式";
+					self.title = "提示";
+					self.show = true;
 				}
 			},
 			initdata() {

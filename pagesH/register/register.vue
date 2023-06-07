@@ -1,25 +1,43 @@
 <template>
-   <view>
-	   <u-navbar :is-back="false" title="注册" title-color="#fff" back-icon-color="#fff" :back-text-style="{ color: '#fff' }"  back-text="返回"  :background="{backgroundColor: '#ff5500'}"> </u-navbar>
-	   <view class="mine-wrap" :style="{ minHeight: mineBoxHeight}">
-	   	<view class="login_line">
-	   		<input class="login_line_input" type="number" v-model="phone" placeholder="请输入手机号码" />
-	   	</view>
-	   	<view class="login_line">
+	<view>
+		<u-navbar :is-back="false" title="注册" title-color="#fff" back-icon-color="#fff"
+			:back-text-style="{ color: '#fff' }" back-text="返回" :background="{backgroundColor: '#ff5500'}"> </u-navbar>
+		<view class="mine-wrap" :style="{ minHeight: mineBoxHeight}">
+			<view class="login_line">
+				<input class="login_line_input" type="number" v-model="phone" placeholder="请输入手机号码" />
+			</view>
+			<view class="login_line">
+				<u-input class="login_line_input" type="password" v-model="password" placeholder="请输入密码" />
+			</view>
+
+			<!-- <view class="cell">
+			<view class="left">
+				<text class="label">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</text>
+				<u-input type="password" placeholder="请输入密码" v-model="password" />
+			</view>
+		</view>
+		<view class="cell">
+			<view class="left">
+				<text class="label">确认密码</text>
+				<u-input type="password" placeholder="请再次确认密码" v-model="truePassWord" />
+			</view>
+		</view> -->
+			<!-- <view class="login_line">
 	   		<input class="login_line_input" type="number" v-model="code" placeholder="请输入验证码" />
 	   		<button class="mini-btn" type="default" size="mini" :disabled="disable" :class="{ codeGeting:isGeting }" @tap="getVerifyCode">{{getCode}}</button>
-	   	</view>
-	   	<view class="login_btn" @tap="checkCode">下一步</view>
-	   <view style="float: left;margin-left: 30upx;" @tap="jumpToUseragress" class="uni-title">
-	   	用户协议及隐私条款
-	   </view>
-		   <view style="float: right;margin-right: 30upx;" @tap="tologin" class="uni-title">
-	   		返回登录
-	   	</view>
-	   </view>
-	   <!-- 弹出层 -->
-	   <u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%" :confirm-style="{color: '#ff5500'}"></u-modal>
-   </view>
+	   	</view> -->
+			<view class="login_btn" @tap="checkPwd">下一步</view>
+			<view style="float: left;margin-left: 30upx;" @tap="jumpToUseragress" class="uni-title">
+				用户协议及隐私条款
+			</view>
+			<view style="float: right;margin-right: 30upx;" @tap="tologin" class="uni-title">
+				返回登录
+			</view>
+		</view>
+		<!-- 弹出层 -->
+		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%"
+			:confirm-style="{color: '#ff5500'}"></u-modal>
+	</view>
 </template>
 
 <script>
@@ -30,8 +48,7 @@
 	import Server from "@/common/serverutil.js";
 	export default {
 		name: 'Register',
-		components: {
-		},
+		components: {},
 		data() {
 			return {
 				getCode: '获取验证码',
@@ -42,7 +59,8 @@
 				code: "",
 				modelshow: false,
 				modeltitle: "",
-				modelcontent: ""
+				modelcontent: "",
+				password: "",
 			}
 		},
 		computed: {
@@ -62,25 +80,50 @@
 					url: '/pagesH/useragreement/useragreement'
 				})
 			},
-			getVerifyCode() {
-				Server.post("/register/captcha", {
+			// getVerifyCode() {
+			// 	Server.post("/register/captcha", {
+			// 		mobile: this.phone,
+			// 		captchaType: "REGISTER"
+			// 	}, {
+			// 		success: response => {
+			// 			var countDown = setInterval(() => {
+			// 				if (this.count < 1) {
+			// 					this.isGeting = false;
+			// 					this.disable = false;
+			// 					this.getCode = '获取验证码';
+			// 					this.count = 300;
+			// 					clearInterval(countDown);
+			// 				} else {
+			// 					this.isGeting = true;
+			// 					this.disable = true;
+			// 					this.getCode = this.count-- + 's后重发';
+			// 				}
+			// 			}, 1000);
+			// 		},
+			// 		warnings: response => {
+			// 			this.modelcontent = response;
+			// 			this.modeltitle = "警告";
+			// 			this.modelshow = true;
+			// 		},
+			// 		error: response => {
+			// 			this.modelcontent = response;
+			// 			this.modeltitle = "错误";
+			// 			this.modelshow = true;
+			// 		}
+			// 	})
+
+			// },
+			checkPwd() {
+				Server.post("/register", {
 					mobile: this.phone,
-					captchaType: "REGISTER"
+					password: this.password
 				}, {
 					success: response => {
-						var countDown = setInterval(() => {
-							if (this.count < 1) {
-								this.isGeting = false;
-								this.disable = false;
-								this.getCode = '获取验证码';
-								this.count = 300;
-								clearInterval(countDown);
-							} else {
-								this.isGeting = true;
-								this.disable = true;
-								this.getCode = this.count-- + 's后重发';
-							}
-						}, 1000);
+						uni.setStorageSync('logintokeninfo', response.data.data);
+						//跳转注册界面
+						uni.navigateTo({
+							url: '/pagesH/step2/step2?phone=' + this.phone
+						});
 					},
 					warnings: response => {
 						this.modelcontent = response;
@@ -93,7 +136,6 @@
 						this.modelshow = true;
 					}
 				})
-
 			},
 			checkCode() {
 				//跳转注册界面
@@ -103,9 +145,10 @@
 					templateCode: "REGISTER"
 				}, {
 					success: response => {
+						uni.setStorageSync('loginuserinfo', response.data.data);
 						//跳转注册界面
 						uni.navigateTo({
-							url: '/pagesH/step2/step2?phone=' + this.phone + '&code=' + this.code
+							url: '/pagesH/step2/step2?phone=' + this.phone
 						});
 					},
 					warnings: response => {

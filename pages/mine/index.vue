@@ -50,11 +50,11 @@
 						<view style="display: flex">
 							<view v-if="userinfo.genderId==1" class="extra">
 								<image class="sex" :src="require('@/static/icon/female_pink.png')" />
-								<text>{{userinfo.age}}·{{userinfo.xinzuo}}·{{userinfo.stageName}}</text>
+								<text>{{userinfo.age}}·{{userinfo.xingzuo}}</text>
 							</view>
 							<view v-else class="extraman">
 								<image class="sex" :src="require('@/static/icon/man_icon.png')" />
-								<text>{{userinfo.age}}·{{userinfo.xinzuo}}·{{userinfo.stageName}}</text>
+								<text>{{userinfo.age}}·{{userinfo.xingzuoText}}</text>
 							</view>
 						</view>
 					</view>

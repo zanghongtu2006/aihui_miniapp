@@ -10,10 +10,10 @@
 	    			<u-button @tap="chooseAvatar">进入裁剪页</u-button>
 	    		</view> -->
 			<view class="header">
-				<image class="bg" style="width: 100%;" :src="geturl(headPortrait)" mode="aspectFill" />
+				<image class="bg" style="width: 100%;" :src="geturl(userInfo.headPortrait)" mode="aspectFill" />
 				<view class="content">
 					<view class="avatar-wrapper" @click="chooseAvatar" style="position: relative;">
-						<image style="width: 100%;height: 100%;position: absolute;left: 0;top: 0;border-radius: 100%;" :src="geturl(headPortrait)"
+						<image style="width: 100%;height: 100%;position: absolute;left: 0;top: 0;border-radius: 100%;" :src="geturl(userInfo.headPortrait)"
 						 alt="" />
 					</view>
 				</view>
@@ -51,21 +51,9 @@
 						</picker>
 					</view>
 				</view>
-				<view class="cell">
-					<view class="left">
-						<text class="label">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</text>
-						<u-input type="password" placeholder="请输入密码" v-model="password" />
-					</view>
-				</view>
-				<view class="cell">
-					<view class="left">
-						<text class="label">确认密码</text>
-						<u-input type="password" placeholder="请再次确认密码" v-model="truePassWord" />
-					</view>
-				</view>
 				
 				<text class="submit-btn" @tap="register">完成</text>
-				<view style="margin-top: 20upx;">注意：性别和生日注册后不可修改</view>
+				<view style="margin-top: 20upx;">注意：性别注册后不可修改</view>
 				
 			</view>
 		</view>
@@ -81,7 +69,14 @@
 		Component
 	} from 'vue-property-decorator'
 	import Server from "@/common/serverutil.js";
-
+	import COS from '@/common/cos-wx-sdk-v5-min.js';
+	function randomUUID() {
+		return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+		const r = Math.random() * 16 | 0
+		const v = c === 'x' ? r : (r & 0x3 | 0x8)
+		return v.toString(16)
+		})
+	}
 	function getDate(type) {
 		const date = new Date();
 
@@ -104,7 +99,6 @@
 		components: {},
 		onLoad(e) {
 			this.username = e.phone;
-			this.code = e.code;
 		},
 		data() {
 			return {
@@ -112,10 +106,10 @@
 				state: 0,
 				sexList: [{
 					name: '男',
-					value: '2'
+					value: '0'
 				}, {
 					name: '女',
-					value: '3'
+					value: '1'
 				}],
 				stateList: [{
 					name: '学生党',
@@ -128,59 +122,87 @@
 					value: '7'
 				}],
 				nickName: "",
-				code: "",
 				username: "",
 				password: "",
 				genderId: 0,
 				stageId: 5,
-				truePassWord: "",
 				birthday: getDate({
 					format: true
 				}),
 				startDate: getDate('start'),
 				endDate: getDate('end'),
-				headPortrait: Vue.prototype.defaultheadportrait,
 				uploadcount: 0,
 				modelshow: false,
 				modeltitle: "",
 				modelcontent: "",
-				actiontype: ""
+				actiontype: "",
+				config: {
+					Bucket: 'images-1303232721',
+					Region: 'ap-shanghai'
+				},
+				userInfo:{
+					headPortrait: Vue.prototype.defaultheadportrait,
+				}
 			}
 		},
+		
 		created() {
-			// 监听从裁剪页发布的事件，获得裁剪结果
-			uni.$on('uAvatarCropper', path => {
-				let self = this;
-				if (self.uploadcount == 0) {
-					
-					uni.uploadFile({
-						url: Vue.prototype.serveraddress + '/fileutil/tempFile', //仅为示例，非真实的接口地址
-						filePath: path,
-						name: 'file',
-						success: (uploadFileRes) => {
-							var data = JSON.parse(uploadFileRes.data)
-							if (data.code == 200) {
-								console.log(data.msg)
-								self.headPortrait = data.msg;
-								self.uploadcount = 1;
-							}else
-							{
-								//接口调用完成执行 关闭loading
-								uni.hideLoading();
-								self.modelcontent = data.msg;
-								self.modeltitle = "警告";
-								self.modelshow = true;
-							}
+			var cos = new COS({
+				// getAuthorization 必选参数
+				SimpleUploadMethod: 'putObject',
+				getAuthorization: function(options, callback) {
+					let token = 'bearer';
+					let restoken = uni.getStorageSync('logintokeninfo');
+					if (restoken) {
+						token = restoken.token_type + ' ' + restoken.access_token
+					}
+					wx.request({
+						url: Vue.prototype.serveraddress + '/cloud/tencent/cos/tmpkey',
+						data: {},
+						dataType: 'json',
+						header: {
+							'Authorization': token
 						},
-						fail: (uploadFileRes) => {
-							console.log(uploadFileRes);
+						success: function(result) {
+							let credentials = result.data.data;
+							callback({
+								TmpSecretId: credentials.tmpSecretId,
+								TmpSecretKey: credentials.tmpSecretKey,
+								SecurityToken: credentials.sessionToken,
+								StartTime: credentials.startTime, 
+								ExpiredTime: credentials.expiredTime, 
+							});
 						}
-
 					});
 				}
-
-
-
+			});
+			// 监听从裁剪页发布的事件，获得裁剪结果
+			uni.$on('uAvatarCropper', path => {
+				console.log("***************************" + path)
+				let self = this;
+				let strs = path.split('.');
+				let uuid = randomUUID();
+				let fileName = uuid + '.' + strs[strs.length -1];
+				let fullFileName = fileName.charAt(0) + "/" + fileName.substr(0,2) + "/" + fileName.substr(0, 8) + "/" + fileName;
+				if (self.uploadcount == 0) {
+					var wxfs = wx.getFileSystemManager();
+					wxfs.readFile({
+						filePath: path,
+						success: function(res) {
+							cos.putObject({
+								Bucket: self.config.Bucket,
+								Region: self.config.Region,
+								Key: fullFileName,
+								Body: res.data, // Body里传入的是文件内容
+							}, function(err, data) {
+								self.userInfo.headPortrait = fullFileName;
+							});
+						},
+						fail: function(err) {
+							console.error(err)
+						},
+					});
+				}
 			})
 		},
 		computed: {
@@ -242,16 +264,13 @@
 			},
 			register() {
 				let self = this;
-				Server.post("/user/register", {
+				Server.post("/users/fillInfo", {
 					"nickName": this.nickName,
 					"birthday": this.birthday,
 					"username": this.username,
 					"genderId": this.genderId,
 					"stageId": this.stageId,
-					"password": this.password,
-					"truePassWord": this.truePassWord,
-					"headPortrait": this.headPortrait,
-					"code": this.code
+					"headPortrait": this.userInfo.headPortrait,
 				}, {
 					success: response => {
 						//注册成功 跳转登录页面
@@ -294,53 +313,9 @@
 					let self = this;
 					this.actiontype = "";
 					//自动登录
-					Server.get("/oauth/token", {
-						username: self.username,
-						password: self.password,
-						grant_type: 'password',
-						client_id: 'clientA',
-						client_secret: '123456',
-						scope: 'all'
-					}, {
-						success: response => {
-							//保存登录信息
-							try {
-								uni.setStorageSync('loginuserinfo', response.data);
-								Server.get("/users/self", {
-								}, {
-									success: response => {
-										uni.setStorageSync('loginuserinfo', response.data.data);
-									},
-									warnings: response => {
-										this.modelcontent = response;
-										this.modeltitle = "警告";
-										this.modelshow = true;
-									},
-									error: response => {
-										this.modelcontent = response;
-										this.modeltitle = "错误";
-										this.modelshow = true;
-									}
-								})
-								//跳转到首页
-								uni.switchTab({
-									url: '/pages/index/index'
-								});
-							} catch (e) {
-								// error
-							}
-						},
-						warnings: response => {
-							this.modelcontent = response;
-							this.modeltitle = "警告";
-							this.modelshow = true;
-						},
-						error: response => {
-							this.modelcontent = response;
-							this.modeltitle = "错误";
-							this.modelshow = true;
-						}
-					})
+					uni.switchTab({
+						url: '/pages/index/index'
+					});
 				}
 			}
 		}
