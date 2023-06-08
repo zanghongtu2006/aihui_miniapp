@@ -31,7 +31,7 @@
 				<view class="cell">
 					<view class="left">
 						<text class="label">昵&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;称</text>
-						<u-input placeholder="请输入昵称" v-model="nickName" />
+						<u-input placeholder="请输入昵称" v-model="userInfo.nickName" />
 
 					</view>
 				</view>
@@ -123,7 +123,6 @@
 				}],
 				nickName: "",
 				username: "",
-				password: "",
 				genderId: 0,
 				stageId: 5,
 				birthday: getDate({
