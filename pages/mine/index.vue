@@ -99,7 +99,7 @@
 							<image class="weixin-icon" :src="require('@/static/icon/weixin.png')" />
 							<text>微信</text>
 						</view>
-						<text class="weixin" v-if="userinfo.weixin!=null">{{userinfo.weixin}}</text>
+						<text class="weixin" v-if="userinfo.wechat!=null">{{userinfo.wechat}}</text>
 					</view>
 					<view class="contact-method content">
 						<view class="weixin-wrapper">
@@ -110,13 +110,13 @@
 					</view>
 				</view>
 
-				<view class="section">
+				<!-- <view class="section">
 					<view class="header">
 						<image class="section-icon" :src="require('@/static/icon/shu_qian.png')" />
 						<view class="title-wrapper">
 							<text class="title">个人标签</text>
 						</view>
-					</view>
+					</view> -->
 					<!-- <view class="tagclass"> -->
 						<!-- 交友需求 -->
 						<!-- <u-tag v-for="(item, index) in userinfo.makefriendsdeman" :key="item.id" class="tagone"
@@ -137,7 +137,7 @@
 							:text="item.name" mode="light" shape="circle" bg-color="#F5F3FE" color="#BDB0F9"
 							border-color="#F5F3FE" />
 					</view> -->
-				</view>
+				<!-- </view> -->
 
 				<!-- <view class="section">
 					<view class="header">

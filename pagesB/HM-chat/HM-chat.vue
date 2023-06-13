@@ -23,10 +23,10 @@
 								{{row.msg.content.text}}
 							</view>
 							<!-- 领取红包消息 -->
-							<!-- <view v-if="row.msg.type=='redEnvelope'" class="red-envelope"> -->
-							<!-- <image src="/static/img/red-envelope-chat.png"></image> -->
-							<!-- {{row.msg.content.text}} -->
-							<!-- </view> -->
+							<view v-if="row.msg.type=='redEnvelope'" class="red-envelope">
+								<image src="../static/img/red-envelope-chat.png"></image>
+								{{row.msg.content.text}}
+							</view>
 						</view>
 					</block>
 					<!-- 用户消息 -->
@@ -52,15 +52,15 @@
 									</image>
 								</view>
 								<!-- 红包 -->
-								<!-- <view v-if="row.msg.type=='redEnvelope'" class="bubble red-envelope" @tap="openRedEnvelope(row.msg,index)"> -->
-								<!-- <image src="/static/img/red-envelope.png"></image> -->
-								<!-- <view class="tis"> -->
-								<!-- 点击开红包 -->
-								<!-- </view> -->
-								<!-- <view class="blessing"> -->
-								<!-- {{row.msg.content.blessing}} -->
-								<!-- </view> -->
-								<!-- </view> -->
+								<view v-if="row.msg.type=='redEnvelope'" class="bubble red-envelope" @tap="openRedEnvelope(row.msg,index)">
+									<image src="../static/img/red-envelope.png"></image>
+									<view class="tis">
+									<!-- 点击开红包 -->
+									</view>
+									<view class="blessing">
+										{{row.msg.content.blessing}}
+									</view>
+								</view>
 
 							</view>
 							<!-- 右-头像 -->
@@ -97,15 +97,15 @@
 									</image>
 								</view>
 								<!-- 红包 -->
-								<!-- <view v-if="row.msg.type=='redEnvelope'" class="bubble red-envelope" @tap="openRedEnvelope(row.msg,index)"> -->
-								<!-- <image src="/static/img/red-envelope.png"></image> -->
-								<!-- <view class="tis"> -->
-								<!-- 点击开红包 -->
-								<!-- </view> -->
-								<!-- <view class="blessing"> -->
-								<!-- {{row.msg.content.blessing}} -->
-								<!-- </view> -->
-								<!-- </view> -->
+								<view v-if="row.msg.type=='redEnvelope'" class="bubble red-envelope" @tap="openRedEnvelope(row.msg,index)">
+									<image src="/static/img/red-envelope.png"></image>
+									<view class="tis">
+									<!-- 点击开红包 -->
+									</view>
+									<view class="blessing">
+										{{row.msg.content.blessing}}
+									</view>
+								</view>
 							</view>
 						</view>
 					</block>
@@ -118,7 +118,7 @@
 			<swiper class="emoji-swiper" :class="{hidden:hideEmoji}" indicator-dots="true" duration="150">
 				<swiper-item v-for="(page,pid) in emojiList" :key="pid">
 					<view v-for="(em,eid) in page" :key="eid" @tap="addEmoji(em)">
-						<image mode="widthFix" :src="'/static/img/emoji/'+em.url"></image>
+						<image mode="widthFix" :src="'../static/emoji/'+em.url"></image>
 					</view>
 				</swiper-item>
 			</swiper>
