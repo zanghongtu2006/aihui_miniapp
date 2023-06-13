@@ -99,14 +99,14 @@
 							<image class="weixin-icon" :src="require('@/static/icon/weixin.png')" />
 							<text>微信</text>
 						</view>
-						<text class="weixin">{{userinfo.weixin}}</text>
+						<text class="weixin" v-if="userinfo.weixin!=null">{{userinfo.weixin}}</text>
 					</view>
 					<view class="contact-method content">
 						<view class="weixin-wrapper">
 							<image class="weixin-icon" :src="require('@/static/icon/qq.png')" />
 							<text>QQ</text>
 						</view>
-						<text class="weixin">{{userinfo.qq}}</text>
+						<text class="weixin" v-if="userinfo.qq!=null">{{userinfo.qq}}</text>
 					</view>
 				</view>
 
@@ -117,29 +117,29 @@
 							<text class="title">个人标签</text>
 						</view>
 					</view>
-					<view class="tagclass">
+					<!-- <view class="tagclass"> -->
 						<!-- 交友需求 -->
-						<u-tag v-for="(item, index) in userinfo.makefriendsdeman" :key="item.id" class="tagone"
+						<!-- <u-tag v-for="(item, index) in userinfo.makefriendsdeman" :key="item.id" class="tagone"
 							:text="item.name" mode="light" shape="circle" bg-color="#FCF0F7" color="#F5C8E0"
-							border-color="#FCF0F7" />
+							border-color="#FCF0F7" /> -->
 						<!-- 个性签名 -->
-						<u-tag v-for="(item, index) in userinfo.personalitytag" :key="item.id" class="tagone"
+						<!-- <u-tag v-for="(item, index) in userinfo.personalitytag" :key="item.id" class="tagone"
 							:text="item.name" mode="light" shape="circle" bg-color="#FAF0FE" color="#E6BBF8"
-							border-color="#FAF0FE" />
+							border-color="#FAF0FE" /> -->
 						<!-- 音乐-->
-						<u-tag v-for="(item, index) in userinfo.music" :key="item.id" class="tagone" :text="item.name"
-							mode="light" shape="circle" bg-color="#EFF9FE" color="#8FD3F5" border-color="#EFF9FE" />
+						<!-- <u-tag v-for="(item, index) in userinfo.music" :key="item.id" class="tagone" :text="item.name"
+							mode="light" shape="circle" bg-color="#EFF9FE" color="#8FD3F5" border-color="#EFF9FE" /> -->
 						<!-- 运动-->
-						<u-tag v-for="(item, index) in userinfo.motion" :key="item.id" class="tagone" :text="item.name"
-							mode="light" shape="circle" bg-color="#EFFEF6" color="#72CD9D" border-color="#EFFEF6" />
+						<!-- <u-tag v-for="(item, index) in userinfo.motion" :key="item.id" class="tagone" :text="item.name"
+							mode="light" shape="circle" bg-color="#EFFEF6" color="#72CD9D" border-color="#EFFEF6" /> -->
 						<!-- 话题-->
-						<u-tag v-for="(item, index) in userinfo.conversation" :key="item.id" class="tagone"
+						<!-- <u-tag v-for="(item, index) in userinfo.conversation" :key="item.id" class="tagone"
 							:text="item.name" mode="light" shape="circle" bg-color="#F5F3FE" color="#BDB0F9"
 							border-color="#F5F3FE" />
-					</view>
+					</view> -->
 				</view>
 
-				<view class="section">
+				<!-- <view class="section">
 					<view class="header">
 						<image class="section-icon" :src="require('@/static/icon/qa.png')" />
 						<view class="title-wrapper">
@@ -156,6 +156,28 @@
 								</view>
 								<view class="wenda_content">
 									{{item.answerContent}}
+								</view>
+							</view>
+						</view>
+					</view>
+				</view> -->
+				<view class="section">
+					<view class="header">
+						<image class="section-icon" :src="require('@/static/icon/qa.png')" />
+						<view class="title-wrapper">
+							<text class="title">邀约</text>
+						</view>
+					</view>
+					<view class="qa content">
+						<view class="wenda_body">
+				
+							<view class="wenda" v-for="(item, index) in userinfo.gameInviteList"
+								@click="addanswer(item)">
+								<view class="wenda_title">
+									﹒ {{item.title}}
+								</view>
+								<view class="wenda_content">
+									{{item.content}}
 								</view>
 							</view>
 						</view>

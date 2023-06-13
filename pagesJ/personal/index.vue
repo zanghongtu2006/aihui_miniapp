@@ -3,43 +3,35 @@
 		<u-navbar :is-back="true" title="编辑个人资料" title-color="#fff" back-icon-color="#fff"
 			:back-text-style="{ color: '#fff' }" back-text="返回" :background="{backgroundColor: '#ff5500'}"> </u-navbar>
 		<view class="page" :style="{ minHeight: mineBoxHeight }">
-			<view class="header">
-				<image class="bg" :src="geturl(userInfo.headPortrait)" />
-				<view class="content">
-					<view class="avatar-wrapper" @tap="ChooseImage">
-						<image class="img" :src="geturl(userInfo.headPortrait)" />
-					</view>
-				</view>
+			<view class="login_line">
+				<view class="login_line_title">身高：</view>
+				<input type="text" maxlength="12" placeholder="请输入身高" v-model="userInfo.height" />
 			</view>
-			<view class="main">
-				<view class="header">
-					<view class="tab-group">
-						<view class="login_line">
-							<view class="login_line_title">昵称：</view>
-							<input type="text" maxlength="12" placeholder="请输入昵称" v-model="userInfo.nickName" />
-						</view>
-						<view class="login_line">
-							<view class="login_line_title">性别：</view>
-							<view style="width: 80%;" @tap="showselect">{{genderText}}</view>
-							<u-select v-model="showgender" :default-value="defaultgender" mode="single-column"
-								:list="list" @confirm="confirmgender" confirm-color="#ff5500"></u-select>
-						</view>
-						<view class="login_line">
-							<view class="login_line_title">年龄：</view>
-							<input type="text" maxlength="12" placeholder="请输入年龄" v-model="userInfo.age" />
-						</view>
-						<view class="login_line">
-							<view class="login_line_title">星座：</view>
-							<view style="width: 80%;" @tap="showxingzuoselect">{{xingzuoText}}</view>
-							<u-select v-model="showxingzuo" :default-value="defaultxingzuo" mode="single-column"
-								:list="xingzuolist" @confirm="confirmxingzuo" confirm-color="#ff5500"></u-select>
-						</view>
-						
-					</view>
-				</view>
-				<view class="login_btn" @tap="updateUserInfo">保存</view>
+			<!-- <view class="login_line">
+				<view class="login_line_title">家乡：</view>
+				<input type="text" maxlength="12" placeholder="请输入家乡" v-model="userInfo.homeTown" />
+			</view> -->
+			<view class="login_line">
+				<view class="login_line_title">居住地：</view>
+				<input type="text" maxlength="12" placeholder="请输入居住地" v-model="userInfo.residencePlace" />
 			</view>
-
+			<view class="login_line">
+				<view class="login_line_title">职业：</view>
+				<input type="text" maxlength="12" placeholder="请输入职业" v-model="userInfo.profession" />
+			</view>
+			<view class="login_line">
+				<view class="login_line_title">微信：</view>
+				<input type="text" maxlength="12" placeholder="请输入微信" v-model="userInfo.wechat" />
+			</view>
+			<view class="login_line">
+				<view class="login_line_title">QQ：</view>
+				<input type="text" maxlength="12" placeholder="请输入QQ" v-model="userInfo.qq" />
+			</view>
+			<view class="login_line">
+				<view class="login_line_title">交友宣言：</view>
+				<input type="text" maxlength="12" placeholder="请输入交友宣言" v-model="userInfo.personalSignature" />
+			</view>
+			<view class="login_btn" @tap="updateUserInfo">保存</view>
 		</view>
 		<!-- 弹出层 -->
 		<u-modal v-model="modelshow" :title="modeltitle" :content="modelcontent" width="70%"
@@ -82,77 +74,11 @@
 				modeltitle: "",
 				modelcontent: "",
 				checked: false,
-				showgender: false,
-				showxingzuo: false,
-				gendervalue: null,
-				genderText: "男",
-				xingzuovalue: null,
-				xingzuoText: "白羊座",
-				xingzuolist: [{
-						value: 0,
-						label: '白羊座',
-					},
-					{
-						value: 1,
-						label: '金牛座'
-					},
-					{
-						value: 2,
-						label: '双子座'
-					},
-					{
-						value: 3,
-						label: '巨蟹座'
-					},
-					{
-						value: 4,
-						label: '狮子座'
-					},
-					{
-						value: 5,
-						label: '处女座'
-					},
-					{
-						value: 6,
-						label: '天秤座'
-					},
-					{
-						value: 7,
-						label: '天蝎座'
-					},
-					{
-						value: 8,
-						label: '射手座'
-					},
-					{
-						value: 9,
-						label: '魔羯座'
-					},
-					{
-						value: 10,
-						label: '水瓶座'
-					},
-					{
-						value: 11,
-						label: '双鱼座'
-				}],
-				list: [{
-						value: 0,
-						label: '男'
-					},
-					{
-						value: 1,
-						label: '女'
-				}],
-				defaultgender: [0],
-				defaultxingzuo: [0],
 				userInfo: {
-					nickName: null,
-					genderId: null,
-					headPortrait: '',
-					xingzuo: null,
 				},
 				imgList: [],
+				hometown: [],
+				residence: [],
 				cosKey: {
 					tmpSecretId: '',
 					tmpSecretKey: '',
@@ -166,93 +92,11 @@
 			}
 		},
 		methods: {
-			// 选择图片
-			ChooseImage() {
-				let self = this;
-				var cos = new COS({
-					// getAuthorization 必选参数
-					SimpleUploadMethod: 'putObject',
-					getAuthorization: function(options, callback) {
-						let token = 'bearer';
-						let restoken = uni.getStorageSync('logintokeninfo');
-						if (restoken) {
-							token = restoken.token_type + ' ' + restoken.access_token
-						}
-						wx.request({
-							url: Vue.prototype.serveraddress + '/cloud/tencent/cos/tmpkey',
-							data: {},
-							dataType: 'json',
-							header: {
-								'Authorization': token
-							},
-							success: function(result) {
-								let credentials = result.data.data;
-								callback({
-									TmpSecretId: credentials.tmpSecretId,
-									TmpSecretKey: credentials.tmpSecretKey,
-									SecurityToken: credentials.sessionToken,
-									StartTime: credentials.startTime, 
-									ExpiredTime: credentials.expiredTime, 
-								});
-							}
-						});
-					}
-				});
-				// 此处以选择图片api(wx.chooseImage)为参考，其他api请参考小程序官方文档
-				wx.chooseImage({
-					count: 1,
-					success: function(res) {
-						let file = res.tempFiles[0];
-						let strs = file.path.split('.');
-						let uuid = randomUUID();
-						let fileName = uuid + '.' + strs[strs.length -1];
-						let fullFileName = fileName.charAt(0) + "/" + fileName.substr(0,2) + "/" + fileName.substr(0, 8) + "/" + fileName;
-						console.log(fullFileName)
-						// 微信小程序里获取文件管理器
-						var wxfs = wx.getFileSystemManager();
-						wxfs.readFile({
-							filePath: file.path,
-							success: function(res) {
-								cos.putObject({
-									Bucket: self.config.Bucket,
-									Region: self.config.Region,
-									Key: fullFileName,
-									Body: res.data, // Body里传入的是文件内容
-								}, function(err, data) {
-									self.userInfo.headPortrait = fullFileName;
-								});
-							},
-							fail: function(err) {
-								console.error(err)
-							},
-						});
-					},
-					fail: function(err) {
-						console.error(err)
-					},
-				});
-			},
 			onShow() {
 				let self = this;
 				Server.get("/users/getUserInfoCheck", {}, {
 					success: response => {
-						console.log(response)
 						self.userInfo = response.data.data;
-						console.log(self.userInfo)
-						for (var i = 0; i < self.list.length; i++) {
-							if (self.list[i].value == self.userInfo.genderId) {
-								self.gendervalue = [i];
-								self.genderText = self.list[i].label
-								break;
-							}
-						}
-						for (var i = 0; i < self.list.length; i++) {
-							if (self.xingzuolist[i].value == self.userInfo.xingzuo) {
-								self.xingzuovalue = [i];
-								self.xingzuoText = self.xingzuolist[i].label
-								break;
-							}
-						}
 					},
 					warnings: response => {
 						this.modelcontent = response;
@@ -280,17 +124,6 @@
 					if (this.list[i].value == this.gendervalue) {
 						this.userInfo.genderId = i;
 						this.userInfo.genderText = this.list[i].label;
-						break;
-					}
-				}
-			},
-			confirmxingzuo(e) {
-				this.xingzuoText = e[0].label;
-				this.xingzuovalue = e[0].value;
-				for (var i = 0; i < this.xingzuolist.length; i++) {
-					if (this.xingzuolist[i].value == this.xingzuovalue) {
-						this.userInfo.xingzuo = i;
-						this.userInfo.xingzuoText = this.xingzuolist[i].label;
 						break;
 					}
 				}

@@ -109,7 +109,7 @@
 			},
 			jumpToPersonal() {
 				uni.navigateTo({
-					url: '/pagesJ/personal/index'
+					url: '/pagesH/step2/step2'
 				})
 			},
 			jumpToActivity() {

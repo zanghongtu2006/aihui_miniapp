@@ -22,7 +22,7 @@
 				<view class="cell">
 					<view class="left">
 						<text class="label">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</text>
-						<picker class="picker" @change="bindSexChange" :value="sex" :range="sexList" range-key="name">
+						<picker class="picker" @change="bindSexChange" :value="userInfo.sex" :range="sexList" range-key="name">
 							<view class="uni-input">{{ sexList[sex].name }}</view>
 						</picker>
 					</view>
@@ -53,8 +53,6 @@
 				</view>
 				
 				<text class="submit-btn" @tap="register">完成</text>
-				<view style="margin-top: 20upx;">注意：性别注册后不可修改</view>
-				
 			</view>
 		</view>
 		<!-- 弹出层 -->
@@ -113,18 +111,14 @@
 				}],
 				stateList: [{
 					name: '学生党',
-					value: '5'
+					value: 5
 				}, {
 					name: '工作党',
-					value: '6'
+					value: 6
 				}, {
 					name: '保密',
-					value: '7'
+					value: 7
 				}],
-				nickName: "",
-				username: "",
-				genderId: 0,
-				stageId: 5,
 				birthday: getDate({
 					format: true
 				}),
@@ -141,6 +135,10 @@
 				},
 				userInfo:{
 					headPortrait: Vue.prototype.defaultheadportrait,
+					nickName: "",
+					username: "",
+					genderId: 0,
+					stageId: null,
 				}
 			}
 		},
@@ -216,6 +214,32 @@
 			}
 		},
 		methods: {
+			onShow() {
+				let self = this;
+				Server.get("/users/getUserInfoCheck", {}, {
+					success: response => {
+						self.userInfo = response.data.data;
+						self.birthday = self.userInfo.birthday;
+						self.sex = self.userInfo.genderId;
+						for (var i = 0; i < self.stateList.length; i++) {
+							if (self.stateList[i].value == self.userInfo.stageId) {
+								this.state = i;
+								break;
+							}
+						}
+					},
+					warnings: response => {
+						this.modelcontent = response;
+						this.modeltitle = "警告";
+						this.modelshow = true;
+					},
+					error: response => {
+						this.modelcontent = response;
+						this.modeltitle = "错误";
+						this.modelshow = true;
+					}
+				})
+			},
 			geturl(url) {
 				if (url !=null && !url.startsWith("http")) {
 					return Vue.prototype.imageaddress + "/" + url;
@@ -228,16 +252,14 @@
 				}
 			}) {
 				this.sex = value;
-				this.genderId = this.sexList[value].value;
-				if (this.genderId == 0) {
+				this.userInfo.genderId = this.sexList[value].value;
+				if (this.userInfo.genderId == 0) {
 					if (this.uploadcount == 0) {
 						this.headPortrait = Vue.prototype.defaultheadportrait;
 					}
-
 				} else {
 					if (this.uploadcount == 0) {
 						this.headPortrait = Vue.prototype.defaulwomantheadportrait
-
 					}
 				}
 
@@ -263,19 +285,14 @@
 			},
 			register() {
 				let self = this;
-				Server.post("/users/fillInfo", {
-					"nickName": this.nickName,
-					"birthday": this.birthday,
-					"username": this.username,
-					"genderId": this.genderId,
-					"stageId": this.stageId,
-					"headPortrait": this.userInfo.headPortrait,
-				}, {
+				self.userInfo.birthday = this.birthday;
+				self.userInfo.stageId = this.stateList[this.state].value;
+				Server.post("/users/fillInfo", self.userInfo, {
 					success: response => {
 						//注册成功 跳转登录页面
 						this.actiontype = "tologin"
-						this.modelcontent = "快去打开新世界吧！";
-						this.modeltitle = "注册成功";
+						this.modelcontent = "";
+						this.modeltitle = "修改成功";
 						this.modelshow = true;
 					},
 					warnings: response => {
